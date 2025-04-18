@@ -13,7 +13,7 @@
 }
 
 @keyframes gridPulse {
-  0%, 100% { opacity: 0.3; }
+  0%, 100% { opacity: 0.2; }
   50% { opacity: 0.6; }
 }
 
@@ -24,22 +24,24 @@
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+  0% { transform: translateY(0px) rotateX(20deg) rotateY(10deg); }
+  50% { transform: translateY(-20px) rotateX(-20deg) rotateY(-10deg); }
+  100% { transform: translateY(0px) rotateX(20deg) rotateY(10deg); }
 }
 
 @keyframes glitch {
-  0% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  80% { transform: translate(2px, -2px); }
-  100% { transform: translate(0); }
+  0% { transform: translate(0) skew(0deg); }
+  20% { transform: translate(-2px, 2px) skew(2deg); }
+  40% { transform: translate(-2px, -2px) skew(-2deg); }
+  60% { transform: translate(2px, 2px) skew(2deg); }
+  80% { transform: translate(2px, -2px) skew(-2deg); }
+  100% { transform: translate(0) skew(0deg); }
 }
 
-@keyframes typewriter {
-  from { width: 0; }
-  to { width: 100%; }
+@keyframes loading {
+  0% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
 }
 
 .animate-grid {
@@ -53,10 +55,16 @@
 
 .animate-float {
   animation: float 6s ease-in-out infinite;
+  transform-style: preserve-3d;
 }
 
 .animate-glitch {
   animation: glitch 0.5s infinite;
+}
+
+.perspective-3d {
+  perspective: 1000px;
+  transform-style: preserve-3d;
 }
 
 .typewriter {
@@ -71,3 +79,9 @@
   from, to { border-color: transparent; }
   50% { border-color: hsl(var(--text-primary)); }
 }
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+

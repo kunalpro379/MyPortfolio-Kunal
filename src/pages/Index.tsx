@@ -2,23 +2,24 @@
 const Index = () => {
   return (
     <main className="relative w-screen h-screen overflow-hidden bg-[hsl(var(--background))]">
-      {/* Animated Grid Background - Now with multiple layers for depth */}
+      {/* Animated Grid Background - Multiple animated layers */}
       <div className="fixed inset-0 w-full h-full">
-        <div className="absolute inset-0 grid-pattern animate-grid"></div>
-        <div className="absolute inset-0 grid-pattern animate-grid" style={{ animationDelay: '-2s' }}></div>
+        <div className="absolute inset-0 grid-pattern animate-grid opacity-30"></div>
+        <div className="absolute inset-0 grid-pattern animate-grid opacity-30" style={{ animationDelay: '-2s', transform: 'scale(1.5) rotate(45deg)' }}></div>
+        <div className="absolute inset-0 grid-pattern animate-grid opacity-30" style={{ animationDelay: '-4s', transform: 'scale(2) rotate(-45deg)' }}></div>
       </div>
 
       {/* Main Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full">
-        {/* KP Logo */}
-        <div className="text-[15rem] font-black animate-float perspective-1000">
-          <span className="block text-[hsl(var(--text-primary))] animate-glitch mix-blend-difference">
+        {/* KP Logo with enhanced 3D effects */}
+        <div className="text-[15rem] font-black animate-float perspective-3d">
+          <span className="block text-[hsl(var(--text-primary))] animate-glitch mix-blend-difference transform-gpu hover:scale-110 transition-transform duration-300 ease-in-out">
             KP
           </span>
-          <span className="absolute top-0 left-0 text-[hsl(var(--text-secondary))] animate-glitch mix-blend-difference" style={{ clipPath: 'inset(0 0 50% 0)' }}>
+          <span className="absolute top-0 left-0 text-[hsl(var(--text-secondary))] animate-glitch mix-blend-difference transform-gpu translate-z-12" style={{ clipPath: 'inset(0 0 50% 0)', transform: 'translateZ(50px)' }}>
             KP
           </span>
-          <span className="absolute top-0 left-0 text-[hsl(var(--text-primary))] animate-glitch mix-blend-difference" style={{ clipPath: 'inset(50% 0 0 0)' }}>
+          <span className="absolute top-0 left-0 text-[hsl(var(--text-primary))] animate-glitch mix-blend-difference transform-gpu -translate-z-12" style={{ clipPath: 'inset(50% 0 0 0)', transform: 'translateZ(-50px)' }}>
             KP
           </span>
         </div>
