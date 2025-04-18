@@ -1,4 +1,3 @@
-
 const Index = () => {
   return (
     <main className="relative w-screen h-screen overflow-hidden bg-[hsl(var(--background))]">
@@ -11,15 +10,15 @@ const Index = () => {
 
       {/* Main Content - Centered with reduced KP size */}
       <div className="absolute inset-0 flex flex-col items-center justify-center">
-        {/* KP Logo with reduced size and 3D effects */}
+        {/* KP Logo with reduced size and enhanced 3D effects */}
         <div className="text-[11rem] font-black animate-float perspective-3d">
-          <span className="block text-[hsl(var(--text-primary))] animate-glitch mix-blend-difference transform-gpu hover:scale-110 transition-transform duration-300 ease-in-out">
+          <span className="block text-[hsl(var(--text-primary))] animate-glitch mix-blend-difference transform-gpu hover:scale-110 transition-transform duration-300 ease-in-out" style={{ textShadow: '0 0 20px rgba(30, 174, 219, 0.5)' }}>
             KP
           </span>
-          <span className="absolute top-0 left-0 text-[hsl(var(--text-secondary))] animate-glitch mix-blend-difference transform-gpu translate-z-12" style={{ clipPath: 'inset(0 0 50% 0)', transform: 'translateZ(50px)' }}>
+          <span className="absolute top-0 left-0 text-[hsl(var(--text-secondary))] animate-glitch mix-blend-difference transform-gpu translate-z-12" style={{ clipPath: 'inset(0 0 50% 0)', transform: 'translateZ(50px)', filter: 'blur(1px)' }}>
             KP
           </span>
-          <span className="absolute top-0 left-0 text-[hsl(var(--text-primary))] animate-glitch mix-blend-difference transform-gpu -translate-z-12" style={{ clipPath: 'inset(50% 0 0 0)', transform: 'translateZ(-50px)' }}>
+          <span className="absolute top-0 left-0 text-[hsl(var(--text-primary))] animate-glitch mix-blend-difference transform-gpu -translate-z-12" style={{ clipPath: 'inset(50% 0 0 0)', transform: 'translateZ(-50px)', filter: 'blur(1px)' }}>
             KP
           </span>
         </div>
@@ -44,4 +43,3 @@ const Index = () => {
 };
 
 export default Index;
-
