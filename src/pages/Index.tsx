@@ -9,10 +9,10 @@ const Index = () => {
         <div className="absolute inset-0 grid-pattern animate-grid opacity-30" style={{ animationDelay: '-4s', transform: 'scale(2) rotate(-45deg)' }}></div>
       </div>
 
-      {/* Main Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center h-full">
-        {/* KP Logo with enhanced 3D effects */}
-        <div className="text-[15rem] font-black animate-float perspective-3d">
+      {/* Main Content - Centered with reduced KP size */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center">
+        {/* KP Logo with reduced size and 3D effects */}
+        <div className="text-[11rem] font-black animate-float perspective-3d">
           <span className="block text-[hsl(var(--text-primary))] animate-glitch mix-blend-difference transform-gpu hover:scale-110 transition-transform duration-300 ease-in-out">
             KP
           </span>
@@ -24,13 +24,13 @@ const Index = () => {
           </span>
         </div>
 
-        {/* Loading Text */}
-        <div className="mt-16 text-2xl font-light text-[hsl(var(--text-secondary))] typewriter">
+        {/* Loading Text - Centered */}
+        <div className="mt-8 text-2xl font-light text-[hsl(var(--text-secondary))] typewriter text-center">
           System Initialization in Progress...
         </div>
 
-        {/* Developer Text */}
-        <div className="mt-8 text-lg font-mono text-[hsl(var(--text-primary))] opacity-75">
+        {/* Developer Text - Centered */}
+        <div className="mt-4 text-lg font-mono text-[hsl(var(--text-primary))] opacity-75 text-center">
           {'< Software Developer | Turning Ideas into Reality />'}
         </div>
 
@@ -44,3 +44,4 @@ const Index = () => {
 };
 
 export default Index;
+
