@@ -2,7 +2,7 @@
 const Index = () => {
   return (
     <main className="relative w-screen h-screen overflow-hidden bg-[hsl(var(--background))]">
-      {/* Animated Grid Background */}
+      {/* Animated Grid Background - Now with multiple layers for depth */}
       <div className="fixed inset-0 w-full h-full">
         <div className="absolute inset-0 grid-pattern animate-grid"></div>
         <div className="absolute inset-0 grid-pattern animate-grid" style={{ animationDelay: '-2s' }}></div>
