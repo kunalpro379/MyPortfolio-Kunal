@@ -29,11 +29,11 @@ import useMobile from '@/hooks/use-mobile';
 
 const Dashboard = () => {
   const location = useLocation();
-  const [showSidebar, setShowSidebar] = useState(true);
+  const { isMobile } = useMobile();
+  const [showSidebar, setShowSidebar] = useState(!isMobile);
   const [currentTime, setCurrentTime] = useState('');
   const [currentDate, setCurrentDate] = useState('');
   const [activeTab, setActiveTab] = useState('main'); // Add state for active tab
-  const { isMobile } = useMobile();
   
   // Add state for dynamic readings
   const [cpuFrequency, setCpuFrequency] = useState(3800);
@@ -176,7 +176,68 @@ const Dashboard = () => {
               <FontAwesomeIcon icon={showSidebar ? faXmark : faBars} />
             </motion.button>
             
-            <div className="text-lg md:text-3xl font-bold text-[#02d8fc]">KunalPatil</div>
+            {/* Animated name with special styling */}
+            <motion.div 
+              className="relative"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              <motion.div
+                className="text-lg md:text-3xl font-bold"
+                style={{
+                  background: "linear-gradient(to right, #02d8fc, #00ff88, #02d8fc)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  fontFamily: "'Orbitron', sans-serif",
+                  letterSpacing: "1px",
+                  textShadow: "0 0 10px rgba(2, 216, 252, 0.5)"
+                }}
+                animate={{
+                  textShadow: [
+                    "0 0 4px rgba(2, 216, 252, 0.5)",
+                    "0 0 8px rgba(2, 216, 252, 0.8)",
+                    "0 0 4px rgba(2, 216, 252, 0.5)"
+                  ]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                KunalPatil
+              </motion.div>
+              
+              {/* Glitch effect */}
+              <motion.div
+                className="absolute inset-0 text-lg md:text-3xl font-bold text-[#ff0066] mix-blend-screen"
+                style={{
+                  fontFamily: "'Orbitron', sans-serif",
+                  letterSpacing: "1px",
+                }}
+                animate={{
+                  opacity: [0, 0.02, 0, 0.015, 0, 0.01, 0],
+                  x: [-1, 1, 0, -1, 0],
+                }}
+                transition={{
+                  duration: 0.5,
+                  repeat: Infinity,
+                  repeatDelay: Math.random() * 5 + 2
+                }}
+              >
+                KunalPatil
+              </motion.div>
+              
+              {/* Cyber underline */}
+              <motion.div
+                className="h-[2px] bg-gradient-to-r from-transparent via-[#02d8fc] to-transparent mt-1"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 1, delay: 0.3 }}
+              />
+            </motion.div>
+            
             <div className="text-sm md:text-2xl font-semibold text-[#02d8fc] hidden sm:block">UEFI BIOS Utility</div>
             <div className="text-[#02d8fc] ml-2 hidden lg:block">ⓘ</div>
           </div>

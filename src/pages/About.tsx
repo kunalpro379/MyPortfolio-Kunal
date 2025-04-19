@@ -52,14 +52,12 @@ const About = () => {
           <div className="mt-6">
             <h3 className="text-xl font-semibold text-[#02d8fc] mb-3">Biography</h3>
             <p className="text-blue-300 mb-4">
-              I am a passionate Full Stack Developer with expertise in Flutter, React, and modern web technologies.
-              Currently studying at VESIT Mumbai, I specialize in creating responsive and intuitive user interfaces
-              with a focus on performance and accessibility.
+            I’m a backend-focused developer with strong expertise in Flutter, Node.js, system design, and AWS. My skills span across backend technologies, DevOps, and deployment, with a focus on building scalable, high-performance systems. I specialize in Node.js, Express.js, and MongoDB, delivering real-time and robust solutions.
+I have extensive experience with real-time communication systems using WebSockets and Socket.IO and have worked on projects like live chat systems and live-streaming platforms. I’m also proficient in machine learning and deep learning, leveraging these technologies for AI-powered solutions such as content recommendations and intelligent search features.
+In the realm of DevOps, I manage the deployment lifecycle using tools like Docker, Kubernetes, CI/CD pipelines, and AWS to ensure streamlined processes and scalable applications. I design systems that emphasize performance, scalability, and fault tolerance, always considering the long-term sustainability of the architecture.
             </p>
             <p className="text-blue-300">
-              With a background in both front-end and back-end development, I bring a holistic approach to
-              software engineering. I'm particularly interested in AI integration, real-time applications,
-              and creating seamless user experiences across platforms.
+            I’m currently exploring the potential of generative AI to build innovative applications and push boundaries in real-time user experiences. From building cloud-native applications to deploying production-ready solutions on AWS, I’m dedicated to creating efficient, reliable, and high-impact technologies that solve real-world problems.
             </p>
           </div>
           
@@ -79,8 +77,8 @@ const About = () => {
               <div className="flex flex-wrap gap-2">
                 <span className="bg-blue-900/30 text-[#00ff88] px-3 py-1 rounded-full text-sm">AI & Machine Learning</span>
                 <span className="bg-blue-900/30 text-[#00ff88] px-3 py-1 rounded-full text-sm">Mobile App Development</span>
-                <span className="bg-blue-900/30 text-[#00ff88] px-3 py-1 rounded-full text-sm">UI/UX Design</span>
-                <span className="bg-blue-900/30 text-[#00ff88] px-3 py-1 rounded-full text-sm">Web3</span>
+                <span className="bg-blue-900/30 text-[#00ff88] px-3 py-1 rounded-full text-sm">C++ system level programming</span>
+                <span className="bg-blue-900/30 text-[#00ff88] px-3 py-1 rounded-full text-sm">Java backend</span>
               </div>
             </div>
           </div>

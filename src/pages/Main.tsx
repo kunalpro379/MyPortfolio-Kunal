@@ -9,6 +9,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import CardDots from '@/components/ui/CardDots';
 
+// Define the brainAnimColor variable here
+const brainAnimColor = '#02d8fc';
+
 // Helper Components
 const TechStack = ({ name, percentage, color }: { name: string, percentage: number, color: string }) => (
   <div>
@@ -979,61 +982,122 @@ const Main = () => {
               />
             </div>
 
-            {/* Brain visualization */}
+            {/* Brain circuit image replacing SVG visualization */}
+
+            {/* Brain circuit image with enhanced animations */}
             <div className="my-2 flex justify-center">
-              <svg width="80" height="80" viewBox="0 0 100 100" className="z-10">
-                <motion.path 
-                  d="M50,10 C25,10 10,30 10,50 C10,65 20,85 50,90 C80,85 90,65 90,50 C90,30 75,10 50,10"
-                  fill="none" 
-                  stroke="#02d8fc" 
-                  strokeWidth="1.5"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                />
-                <motion.path 
-                  d="M30,30 C20,40 20,60 30,70 C40,80 60,80 70,70 C80,60 80,40 70,30 C60,20 40,20 30,30"
-                  fill="none" 
-                  stroke="#00ff88" 
-                  strokeWidth="1.5"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ duration: 3, delay: 0.5, repeat: Infinity }}
-                />
-                <motion.path 
-                  d="M40,25 C35,30 35,45 40,50 C45,55 55,55 60,50 C65,45 65,30 60,25 C55,20 45,20 40,25"
-                  fill="none" 
-                  stroke="#ff5f00" 
-                  strokeWidth="1.5"
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ duration: 2, delay: 1, repeat: Infinity }}
+              <motion.div 
+                className="relative w-40 h-40 md:w-48 md:h-48"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+              >
+                <motion.img 
+                  src="/braincircuit.png" 
+                  alt="Neural Circuit Brain" 
+                  className="w-full h-full object-contain z-20 relative"
+                  animate={{ 
+                    filter: ['brightness(1)', 'brightness(1.3)', 'brightness(1)'],
+                    scale: [1, 1.05, 1]
+                  }}
+                  transition={{ 
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
                 />
                 
-                {/* Neural dots */}
-                {Array.from({ length: 12 }).map((_, i) => {
-                  const x = 50 + 25 * Math.cos(i * (Math.PI / 6));
-                  const y = 50 + 25 * Math.sin(i * (Math.PI / 6));
+                {/* Animated glow effect */}
+                <motion.div 
+                  className="absolute inset-0 rounded-full blur-xl z-10"
+                  style={{ backgroundColor: brainAnimColor }}
+                  animate={{ 
+                    opacity: [0.2, 0.5, 0.2],
+                    scale: [0.8, 1.2, 0.8],
+                  }}
+                  transition={{ 
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                
+                {/* Pulsating ring effect */}
+                <motion.div
+                  className="absolute inset-0 border-4 rounded-full z-30"
+                  style={{ borderColor: brainAnimColor }}
+                  animate={{
+                    scale: [0.7, 1.3, 0.7],
+                    opacity: [0.7, 0, 0.7],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+                
+                {/* Particle effect around the brain */}
+                {[...Array(6)].map((_, i) => (
+                  <motion.div
+                    key={`particle-${i}`}
+                    className="absolute w-2 h-2 rounded-full z-30"
+                    style={{ 
+                      backgroundColor: i % 2 === 0 ? '#02d8fc' : '#00ff88',
+                      top: `${50 + 35 * Math.sin(i * Math.PI / 3)}%`,
+                      left: `${50 + 35 * Math.cos(i * Math.PI / 3)}%`,
+                    }}
+                    animate={{
+                      scale: [0.5, 1.5, 0.5],
+                      opacity: [0.3, 1, 0.3],
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      delay: i * 0.3,
+                      ease: "easeInOut"
+                    }}
+                  />
+                ))}
+                
+                {/* Neural connections */}
+                {[...Array(3)].map((_, i) => {
+                  const startAngle = i * 2 * Math.PI / 3;
+                  const endAngle = ((i + 1.5) % 3) * 2 * Math.PI / 3;
+                  const start = {
+                    x: 50 + 40 * Math.cos(startAngle),
+                    y: 50 + 40 * Math.sin(startAngle)
+                  };
+                  const end = {
+                    x: 50 + 40 * Math.cos(endAngle),
+                    y: 50 + 40 * Math.sin(endAngle)
+                  };
+                  
                   return (
-                    <motion.circle
-                      key={`neural-${i}`}
-                      cx={x}
-                      cy={y}
-                      r={1.5}
-                      fill="#02d8fc"
+                    <motion.div
+                      key={`connection-${i}`}
+                      className="absolute h-0.5 rounded-full origin-left z-10"
+                      style={{
+                        top: `${start.y}%`,
+                        left: `${start.x}%`,
+                        backgroundColor: brainAnimColor,
+                        width: `${Math.hypot(end.x - start.x, end.y - start.y)}%`,
+                        transform: `rotate(${Math.atan2(end.y - start.y, end.x - start.x)}rad)`,
+                      }}
                       animate={{
-                        opacity: [0.2, 1, 0.2],
-                        scale: [0.8, 1.2, 0.8]
+                        opacity: [0, 1, 0],
+                        scaleX: [0.5, 1, 0.5],
                       }}
                       transition={{
                         duration: 2,
-                        delay: i * 0.2,
-                        repeat: Infinity
+                        repeat: Infinity,
+                        delay: i * 0.5,
+                        ease: "easeInOut"
                       }}
                     />
                   );
                 })}
-              </svg>
+              </motion.div>
             </div>
 
             <div className="mt-4">
