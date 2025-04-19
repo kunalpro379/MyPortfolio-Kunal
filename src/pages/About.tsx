@@ -40,11 +40,11 @@ const About = () => {
               <h2 className="text-2xl md:text-3xl font-bold text-[#02d8fc]">Kunal Patil</h2>
               <p className="text-blue-300 text-lg">Full Stack Developer & Designer</p>
               <div className="flex flex-wrap gap-2 justify-center md:justify-start">
-                <span className="bg-blue-900/30 text-[#02d8fc] px-2 py-1 rounded text-xs">Flutter</span>
-                <span className="bg-blue-900/30 text-[#02d8fc] px-2 py-1 rounded text-xs">React</span>
-                <span className="bg-blue-900/30 text-[#02d8fc] px-2 py-1 rounded text-xs">Node.js</span>
-                <span className="bg-blue-900/30 text-[#02d8fc] px-2 py-1 rounded text-xs">UI/UX</span>
-                <span className="bg-blue-900/30 text-[#02d8fc] px-2 py-1 rounded text-xs">AI Integration</span>
+                <span className="bg-blue-900/30 text-[#02d8fc] px-2 py-1 rounded text-xs">AI & Machine Learning</span>
+                <span className="bg-blue-900/30 text-[#02d8fc] px-2 py-1 rounded text-xs">Mobile App Development</span>
+                <span className="bg-blue-900/30 text-[#02d8fc] px-2 py-1 rounded text-xs">C++ system level programming</span>
+                <span className="bg-blue-900/30 text-[#02d8fc] px-2 py-1 rounded text-xs">Java backend</span>
+                <span className="bg-blue-900/30 text-[#02d8fc] px-2 py-1 rounded text-xs">GenAI Explorer</span>
               </div>
             </div>
           </div>
