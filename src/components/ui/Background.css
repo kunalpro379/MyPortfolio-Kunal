@@ -1,0 +1,16 @@
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    #000916 20px,
+    #000b3a 40px
+  );
+  background-size: 100% 100%;
+  filter: blur(1.5px);
+  overflow: hidden;
+}

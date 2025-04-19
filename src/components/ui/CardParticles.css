@@ -1,0 +1,4 @@
+.particle-canvas {
+  opacity: 0.7;
+  mix-blend-mode: screen;
+}

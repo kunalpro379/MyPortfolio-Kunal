@@ -1,44 +1,156 @@
-const Index = () => {
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import Background from '@/components/ui/Background';
+
+interface IndexProps {
+  onComplete?: () => void;
+}
+
+const Index = ({ onComplete }: IndexProps) => {
+  const [progressWidth, setProgressWidth] = useState(0);
+  
+  useEffect(() => {
+    // Smoother progress animation
+    const timer = setInterval(() => {
+      setProgressWidth(prev => {
+        const increment = (100 - prev) * 0.1; // Dynamic increment for smooth deceleration
+        const newWidth = prev + Math.max(0.5, increment);
+        
+        if (newWidth >= 100) {
+          clearInterval(timer);
+          setTimeout(() => {
+            if (onComplete) onComplete();
+          }, 500);
+          return 100;
+        }
+        return newWidth;
+      });
+    }, 50);
+
+    return () => clearInterval(timer);
+  }, [onComplete]);
+
   return (
-    <main className="relative w-screen h-screen overflow-hidden bg-[hsl(var(--background))]">
-      {/* Animated Grid Background - Multiple animated layers */}
-      <div className="fixed inset-0 w-full h-full">
-        <div className="absolute inset-0 grid-pattern animate-grid opacity-30"></div>
-        <div className="absolute inset-0 grid-pattern animate-grid opacity-30" style={{ animationDelay: '-2s', transform: 'scale(1.5) rotate(45deg)' }}></div>
-        <div className="absolute inset-0 grid-pattern animate-grid opacity-30" style={{ animationDelay: '-4s', transform: 'scale(2) rotate(-45deg)' }}></div>
+    <div className="h-full w-full flex items-center justify-center bg-[#011428] relative overflow-hidden">
+      <Background />
+      <div className="relative z-10 flex flex-col items-center justify-center w-full h-full p-4">
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-4xl md:text-6xl font-bold text-[#02d8fc] mb-4"
+        >
+          <motion.main 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="flex items-center justify-center h-full w-full bg-purple"
+          >
+            {/* Main Content - Centered */}
+            <div className="flex flex-col items-center justify-center">
+              {/* KP Logo with glow effect */}
+              <motion.div 
+                className="relative mb-16"
+                animate={{ 
+                  scale: [1, 1.05, 1],
+                  opacity: [0.9, 1, 0.9]
+                }}
+                transition={{ 
+                  duration: 2, 
+                  ease: "easeInOut",
+                  repeat: Infinity,
+                }}
+              >
+                <div className="text-[6rem] sm:text-[8rem] md:text-[11rem] font-black">
+                  <span className="text-black" style={{ 
+                    textShadow: '0 0 10px rgba(118, 31, 199, 0.7), 0 0 20px rgba(118, 31, 199, 0.5)' 
+                  }}>
+                    K<span className="text-[#8b31f7]">P</span>
+                  </span>
+                </div>
+                
+                {/* Add glow effect around the logo */}
+                <motion.div 
+                  className="absolute inset-0 blur-xl opacity-30" 
+                  animate={{
+                    opacity: [0.3, 0.5, 0.3],
+                  }}
+                  transition={{
+                    duration: 2,
+                    ease: "easeInOut",
+                    repeat: Infinity,
+                  }}
+                  style={{ 
+                    background: 'radial-gradient(circle at center, #8b31f7 0%, transparent 70%)',
+                    zIndex: -1
+                  }}
+                ></motion.div>
+              </motion.div>
+
+              {/* System Initialization Text */}
+              <motion.div 
+                className="text-xl md:text-2xl font-light text-gray-300 mb-6"
+                animate={{ opacity: [0.7, 1, 0.7] }}
+                transition={{ duration: 1.5, ease: "easeInOut", repeat: Infinity }}
+              >
+                System Initialization in Progress...
+              </motion.div>
+
+              {/* Developer Text */}
+              <div className="text-md md:text-lg font-mono text-[#02d8fc] mb-8">
+                {'< Software Developer | Turning Ideas into Reality />'}
+              </div>
+
+              {/* Loading Bar with improved styling */}
+              <div className="w-full max-w-md bg-gray-800/30 rounded-full overflow-hidden relative h-2 backdrop-blur-sm">
+                <motion.div 
+                  className="h-full relative"
+                  style={{
+                    background: 'linear-gradient(90deg, #02d8fc, #0066ff)',
+                    width: `${progressWidth}%`,
+                  }}
+                  initial={{ width: "0%", opacity: 0 }}
+                  animate={{ 
+                    width: `${progressWidth}%`,
+                    opacity: 1,
+                  }}
+                  transition={{ 
+                    duration: 0.3,
+                    ease: "easeOut"
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer" />
+                </motion.div>
+
+                {/* Glowing effect */}
+                <div 
+                  className="absolute inset-0 w-full h-full opacity-50"
+                  style={{
+                    background: `radial-gradient(circle at ${progressWidth}% 50%, rgba(2, 216, 252, 0.4) 0%, transparent 50%)`
+                  }}
+                />
+              </div>
+              
+              {/* Loading percentage with smoother animation */}
+              <motion.div 
+                className="text-sm text-gray-400 mt-2"
+                animate={{ 
+                  opacity: [0.5, 1, 0.5],
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                {Math.round(progressWidth)}%
+              </motion.div>
+            </div>
+          </motion.main>
+        </motion.div>
       </div>
-
-      {/* Main Content - Centered with reduced KP size */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center">
-        {/* KP Logo with reduced size and enhanced 3D effects */}
-        <div className="text-[11rem] font-black animate-float perspective-3d">
-          <span className="block text-[hsl(var(--text-primary))] animate-glitch mix-blend-difference transform-gpu hover:scale-110 transition-transform duration-300 ease-in-out" style={{ textShadow: '0 0 20px rgba(30, 174, 219, 0.5)' }}>
-            KP
-          </span>
-          <span className="absolute top-0 left-0 text-[hsl(var(--text-secondary))] animate-glitch mix-blend-difference transform-gpu translate-z-12" style={{ clipPath: 'inset(0 0 50% 0)', transform: 'translateZ(50px)', filter: 'blur(1px)' }}>
-            KP
-          </span>
-          <span className="absolute top-0 left-0 text-[hsl(var(--text-primary))] animate-glitch mix-blend-difference transform-gpu -translate-z-12" style={{ clipPath: 'inset(50% 0 0 0)', transform: 'translateZ(-50px)', filter: 'blur(1px)' }}>
-            KP
-          </span>
-        </div>
-
-        {/* Loading Text - Centered */}
-        <div className="mt-8 text-2xl font-light text-[hsl(var(--text-secondary))] typewriter text-center">
-          System Initialization in Progress...
-        </div>
-
-        {/* Developer Text - Centered */}
-        <div className="mt-4 text-lg font-mono text-[hsl(var(--text-primary))] opacity-75 text-center">
-          {'< Software Developer | Turning Ideas into Reality />'}
-        </div>
-
-        {/* Loading Bar */}
-        <div className="w-64 h-1 mt-8 overflow-hidden bg-[hsl(var(--text-primary)/0.2)] rounded-full">
-          <div className="h-full bg-[hsl(var(--text-primary))] animate-[loading_2s_ease-in-out_infinite]"></div>
-        </div>
-      </div>
-    </main>
+    </div>
   );
 };
 

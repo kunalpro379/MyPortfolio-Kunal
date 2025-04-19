@@ -17,3 +17,9 @@ export function useIsMobile() {
 
   return !!isMobile
 }
+
+// Default export for simpler import
+export default function useMobile() {
+  const isMobile = useIsMobile();
+  return { isMobile };
+}

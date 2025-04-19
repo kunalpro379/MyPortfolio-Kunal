@@ -19,6 +19,13 @@ export default {
 		},
 		extend: {
 			colors: {
+				bios: {
+					bg: "#1a0808",
+					accent: "#8b0000",
+					text: "#ffffff",
+					muted: "#666666",
+					highlight: "#ff0000",
+				},
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
@@ -62,6 +69,9 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				}
+			},
+			backgroundImage: {
+				'bios-pattern': 'repeating-linear-gradient(45deg, rgba(255,0,0,0.05) 0px, rgba(255,0,0,0.05) 2px, transparent 2px, transparent 4px)',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
