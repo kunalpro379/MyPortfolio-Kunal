@@ -38,7 +38,7 @@ const About = () => {
             
             <div className="space-y-2 text-center md:text-left">
               <h2 className="text-2xl md:text-3xl font-bold text-[#02d8fc]">Kunal Patil</h2>
-              <p className="text-blue-300 text-lg">Full Stack Developer & Designer</p>
+              <p className="text-blue-300 text-lg">AI Engineer</p>
               <div className="flex flex-wrap gap-2 justify-center md:justify-start">
                 <span className="bg-blue-900/30 text-[#02d8fc] px-2 py-1 rounded text-xs">AI & Machine Learning</span>
                 <span className="bg-blue-900/30 text-[#02d8fc] px-2 py-1 rounded text-xs">Mobile App Development</span>
