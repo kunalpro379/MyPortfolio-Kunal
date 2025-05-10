@@ -5,16 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "craco build",
+    "build": "tsc && vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "craco start",
-    "test": "craco test",
-    "eject": "react-scripts eject"
+    "start": "vite"
   },
   "dependencies": {
-    "@craco/craco": "^7.1.0",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
@@ -96,10 +93,11 @@
     "tailwindcss": "^3.4.11",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
-    "vite": "^5.4.1"
+    "vite": "^5.4.1",
+    "vite-tsconfig-paths": "^5.1.4"
   },
   "resolutions": {
-  "vfile": "5.3.5",
-  "vfile-message": "3.1.2"
-}
+    "vfile": "5.3.5",
+    "vfile-message": "3.1.2"
+  }
 }
