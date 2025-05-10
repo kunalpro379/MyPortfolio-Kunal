@@ -94,13 +94,75 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'glitch': {
+					'0%': {
+						transform: 'translate(0)',
+						opacity: '1'
+					},
+					'20%': {
+						transform: 'translate(-2px, 2px)',
+						opacity: '0.8'
+					},
+					'40%': {
+						transform: 'translate(-2px, -2px)',
+						opacity: '0.9'
+					},
+					'60%': {
+						transform: 'translate(2px, 2px)',
+						opacity: '0.8'
+					},
+					'80%': {
+						transform: 'translate(2px, -2px)',
+						opacity: '0.9'
+					},
+					'100%': {
+						transform: 'translate(0)',
+						opacity: '1'
+					}
+				},
+				'gradient': {
+					'0%': {
+						backgroundPosition: '0% 50%'
+					},
+					'50%': {
+						backgroundPosition: '100% 50%'
+					},
+					'100%': {
+						backgroundPosition: '0% 50%'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'glitch': 'glitch 2s infinite',
+				'gradient': 'gradient 8s ease infinite'
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		require("tailwindcss-animate"),
+		function ({ addUtilities }) {
+			addUtilities({
+				'.custom-scrollbar': {
+					'&::-webkit-scrollbar': {
+						width: '8px',
+						height: '8px',
+					},
+					'&::-webkit-scrollbar-track': {
+						background: 'rgba(0, 0, 0, 0.1)',
+						borderRadius: '4px',
+					},
+					'&::-webkit-scrollbar-thumb': {
+						background: '#02d8fc',
+						borderRadius: '4px',
+						'&:hover': {
+							background: '#00b8d9',
+						},
+					},
+				},
+			})
+		},
+	],
 } satisfies Config;

@@ -7,10 +7,20 @@
   z-index: 0;
   background: repeating-linear-gradient(
     45deg,
-    #000916 20px,
+    #000000 20px,
     #000b3a 40px
   );
-  background-size: 100% 100%;
+  background-size: 200% 200%;
   filter: blur(1.5px);
   overflow: hidden;
+  animation: slide 45s linear infinite;
+}
+
+@keyframes slide {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 200%;
+  }
 }

@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faMicrochip, 
-  faMemory, 
-  faHdd, 
+import {
+  faMicrochip,
+  faMemory,
+  faHdd,
   faTemperatureHalf,
 } from '@fortawesome/free-solid-svg-icons';
 import CardDots from '@/components/ui/CardDots';
@@ -31,7 +31,7 @@ const TechStack = ({ name, percentage, color }: { name: string, percentage: numb
 );
 
 const ProjectStat = ({ name, value }: { name: string, value: string }) => (
-  <motion.div 
+  <motion.div
     className="flex justify-between items-center"
     whileHover={{ x: 5 }}
   >
@@ -41,7 +41,7 @@ const ProjectStat = ({ name, value }: { name: string, value: string }) => (
 );
 
 const HealthStat = ({ name, value, icon }: { name: string, value: string, icon: string }) => (
-  <motion.div 
+  <motion.div
     className="flex justify-between items-center"
     whileHover={{ x: 5 }}
   >
@@ -72,40 +72,40 @@ const CognitiveProcessingUnitGauge = ({ value, maxValue }: { value: number, maxV
   const percentage = (value / maxValue) * 100;
   const circumference = 2 * Math.PI * 70;
   const offset = circumference - (percentage / 100) * circumference;
-  
+
   // Animated counter
   const [displayValue, setDisplayValue] = useState(0);
-  
+
   useEffect(() => {
     // Animate the counter from current display value to the actual value
     const duration = 800;
     const startValue = displayValue;
     const startTime = Date.now();
-    
+
     const animateValue = () => {
       const now = Date.now();
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      
+
       const newValue = Math.floor(startValue + progress * (value - startValue));
       setDisplayValue(newValue);
-      
+
       if (progress < 1) {
         requestAnimationFrame(animateValue);
       }
     };
-    
+
     requestAnimationFrame(animateValue);
   }, [value]);
 
   return (
-    
+
     <div className="relative w-48 h-48">
-        
+
       {/* Grid background pattern */}
       <div className="absolute inset-0 opacity-10">
-        
-        <div className="w-full h-full" 
+
+        <div className="w-full h-full"
           style={{
             backgroundImage: 'radial-gradient(circle, #02d8fc 1px, transparent 1px), radial-gradient(circle, #02d8fc 1px, transparent 1px)',
             backgroundSize: '20px 20px',
@@ -116,14 +116,14 @@ const CognitiveProcessingUnitGauge = ({ value, maxValue }: { value: number, maxV
 
       {/* Outer glow effect */}
       <div className="absolute inset-0 rounded-full blur-[15px] bg-[#02d8fc] opacity-10" />
-      
+
       <svg className="transform -rotate-90 w-full h-full relative">
         {/* Segmented arcs - 60 segments */}
         {Array.from({ length: 60 }).map((_, i) => {
           const rotation = (i * 6); // 6 degrees per segment
           const isActive = i < Math.floor(percentage / 100 * 60);
           const isMajor = i % 5 === 0; // Major tick every 5 segments
-          
+
           return (
             <motion.path
               key={`segment-${i}`}
@@ -134,7 +134,7 @@ const CognitiveProcessingUnitGauge = ({ value, maxValue }: { value: number, maxV
               fill="none"
               className={`${isActive ? "opacity-90" : "opacity-30"} transition-all duration-300`}
               strokeLinecap="round"
-              animate={isActive ? { 
+              animate={isActive ? {
                 opacity: [0.7, 1, 0.7],
               } : {}}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -163,15 +163,15 @@ const CognitiveProcessingUnitGauge = ({ value, maxValue }: { value: number, maxV
           stroke="#02d8fc40"
           strokeWidth="1"
           fill="none"
-          animate={{ 
+          animate={{
             opacity: [1, 0.5, 0.8, 0.3, 1],
             scale: [1, 1.01, 0.99, 1.02, 1],
           }}
-          transition={{ 
-            duration: 3, 
+          transition={{
+            duration: 3,
             repeat: Infinity,
             times: [0, 0.2, 0.4, 0.6, 1],
-            ease: "easeInOut" 
+            ease: "easeInOut"
           }}
         />
 
@@ -186,7 +186,7 @@ const CognitiveProcessingUnitGauge = ({ value, maxValue }: { value: number, maxV
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
         </defs>
-        
+
         <motion.circle
           cx="96"
           cy="96"
@@ -224,7 +224,7 @@ const CognitiveProcessingUnitGauge = ({ value, maxValue }: { value: number, maxV
             />
           );
         })}
-        
+
         {/* Digital markers at cardinal points */}
         {[0, 90, 180, 270].map((angle) => (
           <path
@@ -265,15 +265,15 @@ const CognitiveProcessingUnitGauge = ({ value, maxValue }: { value: number, maxV
 
           {/* Value display */}
           <div className="flex flex-col items-center justify-center z-10 p-2">
-      
-            
+
+
             <div className="relative">
-              <motion.div 
+              <motion.div
                 className="text-4xl font-bold font-mono text-[#02d8fc]"
-                animate={{ 
+                animate={{
                   textShadow: ['0 0 8px rgba(2,216,252,0.5)', '0 0 15px rgba(2,216,252,0.8)', '0 0 8px rgba(2,216,252,0.5)'],
                 }}
-                transition={{ 
+                transition={{
                   duration: 2,
                   repeat: Infinity,
                   ease: "easeInOut"
@@ -281,24 +281,24 @@ const CognitiveProcessingUnitGauge = ({ value, maxValue }: { value: number, maxV
               >
                 {displayValue}
               </motion.div>
-              
+
               {/* Random glitch effect */}
-              <motion.div 
+              <motion.div
                 className="absolute inset-0 flex items-center justify-center text-4xl font-bold font-mono text-[#ff0066] mix-blend-screen"
-                animate={{ 
+                animate={{
                   opacity: [0, 0.01, 0, 0.015, 0, 0.008, 0],
                   x: [-2, 1, 0, -1, 0],
                 }}
-                transition={{ 
-                  duration: 0.5, 
-                  repeat: Infinity, 
+                transition={{
+                  duration: 0.5,
+                  repeat: Infinity,
                   repeatDelay: Math.random() * 5 + 3
                 }}
               >
                 {displayValue}
               </motion.div>
             </div>
-            
+
             <span className="text-[#02d8fc80] text-sm font-mono">MHz</span>
           </div>
         </div>
@@ -322,7 +322,7 @@ const CognitiveProcessingUnitGauge = ({ value, maxValue }: { value: number, maxV
                 <stop offset="0%" stopColor={i % 2 === 0 ? "#02d8fc" : "#00ff88"} />
                 <stop offset="100%" stopColor={i % 2 === 0 ? "#0ff" : "#02d8fc"} />
               </linearGradient>
-              
+
               {/* Define the trail path animation */}
               <motion.path
                 id={`trailPath${i}`}
@@ -331,7 +331,7 @@ const CognitiveProcessingUnitGauge = ({ value, maxValue }: { value: number, maxV
                 initial={false}
               />
             </defs>
-            
+
             {/* Trail effect */}
             <motion.path
               d="M2,10 L18,10"
@@ -339,36 +339,36 @@ const CognitiveProcessingUnitGauge = ({ value, maxValue }: { value: number, maxV
               strokeWidth="0.8"
               strokeDasharray="1,3"
               initial={{ pathLength: 0 }}
-              animate={{ 
+              animate={{
                 pathLength: [0, 1, 1, 0],
-                opacity: [0, 1, 1, 0] 
+                opacity: [0, 1, 1, 0]
               }}
-              transition={{ 
+              transition={{
                 duration: 5,
                 times: [0, 0.3, 0.7, 1],
                 repeat: Infinity,
                 repeatDelay: 1
               }}
             />
-            
+
             {/* Moving dot */}
             <motion.circle
               cx="2"
               cy="10"
               r="2"
               fill={i % 2 === 0 ? "#02d8fc" : "#00ff88"}
-              animate={{ 
+              animate={{
                 cx: [2, 18, 18, 2],
                 opacity: [0.7, 1, 0.7, 0]
               }}
-              transition={{ 
+              transition={{
                 duration: 5,
                 times: [0, 0.3, 0.7, 1],
                 repeat: Infinity,
                 repeatDelay: 1
               }}
             />
-            
+
             {/* Connecting line that grows from center */}
             <motion.line
               x1="10"
@@ -382,7 +382,7 @@ const CognitiveProcessingUnitGauge = ({ value, maxValue }: { value: number, maxV
                 x2: [10, 18],
                 opacity: [0, 1, 1, 0]
               }}
-              transition={{ 
+              transition={{
                 duration: 5,
                 times: [0, 0.3, 0.7, 1],
                 repeat: Infinity,
@@ -400,29 +400,29 @@ const CreativeRenderingCoreGauge = ({ value, maxValue }: { value: number, maxVal
   const percentage = (value / maxValue) * 100;
   const circumference = 2 * Math.PI * 70;
   const offset = circumference - (percentage / 100) * circumference;
-  
+
   // Animated counter
   const [displayValue, setDisplayValue] = useState(0);
-  
+
   useEffect(() => {
     // Animate the counter from current display value to the actual value
     const duration = 800;
     const startValue = displayValue;
     const startTime = Date.now();
-    
+
     const animateValue = () => {
       const now = Date.now();
       const elapsed = now - startTime;
       const progress = Math.min(elapsed / duration, 1);
-      
+
       const newValue = Math.floor(startValue + progress * (value - startValue));
       setDisplayValue(newValue);
-      
+
       if (progress < 1) {
         requestAnimationFrame(animateValue);
       }
     };
-    
+
     requestAnimationFrame(animateValue);
   }, [value]);
 
@@ -430,7 +430,7 @@ const CreativeRenderingCoreGauge = ({ value, maxValue }: { value: number, maxVal
     <div className="relative w-48 h-48">
       {/* Grid background pattern */}
       <div className="absolute inset-0 opacity-10">
-        <div className="w-full h-full" 
+        <div className="w-full h-full"
           style={{
             backgroundImage: 'radial-gradient(circle, #f97316 1px, transparent 1px), radial-gradient(circle, #f97316 1px, transparent 1px)',
             backgroundSize: '20px 20px',
@@ -441,14 +441,14 @@ const CreativeRenderingCoreGauge = ({ value, maxValue }: { value: number, maxVal
 
       {/* Outer glow effect */}
       <div className="absolute inset-0 rounded-full blur-[15px] bg-[#f97316] opacity-10" />
-      
+
       <svg className="transform -rotate-90 w-full h-full relative">
         {/* Segmented arcs - 60 segments */}
         {Array.from({ length: 60 }).map((_, i) => {
           const rotation = (i * 6); // 6 degrees per segment
           const isActive = i < Math.floor(percentage / 100 * 60);
           const isMajor = i % 5 === 0; // Major tick every 5 segments
-          
+
           return (
             <motion.path
               key={`segment-${i}`}
@@ -459,7 +459,7 @@ const CreativeRenderingCoreGauge = ({ value, maxValue }: { value: number, maxVal
               fill="none"
               className={`${isActive ? "opacity-90" : "opacity-30"} transition-all duration-300`}
               strokeLinecap="round"
-              animate={isActive ? { 
+              animate={isActive ? {
                 opacity: [0.7, 1, 0.7],
               } : {}}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -488,15 +488,15 @@ const CreativeRenderingCoreGauge = ({ value, maxValue }: { value: number, maxVal
           stroke="#f9731640"
           strokeWidth="1"
           fill="none"
-          animate={{ 
+          animate={{
             opacity: [1, 0.5, 0.8, 0.3, 1],
             scale: [1, 1.01, 0.99, 1.02, 1],
           }}
-          transition={{ 
-            duration: 3, 
+          transition={{
+            duration: 3,
             repeat: Infinity,
             times: [0, 0.2, 0.4, 0.6, 1],
-            ease: "easeInOut" 
+            ease: "easeInOut"
           }}
         />
 
@@ -511,7 +511,7 @@ const CreativeRenderingCoreGauge = ({ value, maxValue }: { value: number, maxVal
             <feComposite in="SourceGraphic" in2="blur" operator="over" />
           </filter>
         </defs>
-        
+
         <motion.circle
           cx="96"
           cy="96"
@@ -549,7 +549,7 @@ const CreativeRenderingCoreGauge = ({ value, maxValue }: { value: number, maxVal
             />
           );
         })}
-        
+
         {/* Digital markers at cardinal points */}
         {[0, 90, 180, 270].map((angle) => (
           <path
@@ -592,12 +592,12 @@ const CreativeRenderingCoreGauge = ({ value, maxValue }: { value: number, maxVal
           <div className="flex flex-col items-center justify-center z-10 p-2">
 
             <div className="relative">
-              <motion.div 
+              <motion.div
                 className="text-4xl font-bold font-mono text-[#f97316]"
-                animate={{ 
+                animate={{
                   textShadow: ['0 0 8px rgba(249,115,22,0.5)', '0 0 15px rgba(249,115,22,0.8)', '0 0 8px rgba(249,115,22,0.5)'],
                 }}
-                transition={{ 
+                transition={{
                   duration: 2,
                   repeat: Infinity,
                   ease: "easeInOut"
@@ -605,24 +605,24 @@ const CreativeRenderingCoreGauge = ({ value, maxValue }: { value: number, maxVal
               >
                 {displayValue}
               </motion.div>
-              
+
               {/* Random glitch effect */}
-              <motion.div 
+              <motion.div
                 className="absolute inset-0 flex items-center justify-center text-4xl font-bold font-mono text-[#ff0066] mix-blend-screen"
-                animate={{ 
+                animate={{
                   opacity: [0, 0.01, 0, 0.015, 0, 0.008, 0],
                   x: [-2, 1, 0, -1, 0],
                 }}
-                transition={{ 
-                  duration: 0.5, 
-                  repeat: Infinity, 
+                transition={{
+                  duration: 0.5,
+                  repeat: Infinity,
                   repeatDelay: Math.random() * 5 + 3
                 }}
               >
                 {displayValue}
               </motion.div>
             </div>
-            
+
             <span className="text-[#f9731680] text-sm font-mono">MHz</span>
           </div>
         </div>
@@ -664,45 +664,45 @@ const HeatVisualizer = ({ fanSpeed, cpuTemp, gpuTemp }: { fanSpeed: number, cpuT
   // Calculate a "heat index" based on CPU and GPU temps
   const avgTemp = (cpuTemp + gpuTemp) / 2;
   const heatLevel = Math.min(Math.max((avgTemp - 35) / 50, 0), 1); // Scale between 0-1 (35°C is cool, 85°C is hot)
-  
+
   // Fan speed as percentage of max (assuming 2500 RPM is max)
   const fanSpeedPercent = Math.min(fanSpeed / 2500, 1);
-  
+
   // Determine status based on temperatures
   const getStatus = () => {
     if (avgTemp < 45) return { text: "Normal", color: "#02d8fc" };
     if (avgTemp < 65) return { text: "Moderate", color: "#f97316" };
     return { text: "Caution", color: "#ef4444" };
   };
-  
+
   const status = getStatus();
-  
+
   return (
     <div className="relative w-32 h-32 mx-auto">
       {/* Background glow based on temperature */}
-      <div 
+      <div
         className="absolute inset-0 rounded-full blur-[20px] transition-all duration-1000 ease-in-out"
-        style={{ 
+        style={{
           backgroundColor: status.color,
           opacity: 0.1 + (heatLevel * 0.4)
         }}
       />
-      
+
       {/* Spiral image that rotates based on fan speed */}
-      <motion.img 
-        src="/output-onlinepngtools.png" 
+      <motion.img
+        src="/output-onlinepngtools.png"
         alt="Fan spiral"
         className="w-full h-full"
         style={{
           filter: `hue-rotate(${avgTemp > 65 ? '0deg' : '160deg'}) brightness(${1 + heatLevel * 0.5})`,
         }}
-        animate={{ 
+        animate={{
           rotate: 360,
           scale: [1, 1 + (heatLevel * 0.05), 1]
         }}
-        transition={{ 
-          rotate: { 
-            repeat: Infinity, 
+        transition={{
+          rotate: {
+            repeat: Infinity,
             duration: 4 / fanSpeedPercent, // Faster rotation with higher fan speed
             ease: "linear"
           },
@@ -716,16 +716,16 @@ const HeatVisualizer = ({ fanSpeed, cpuTemp, gpuTemp }: { fanSpeed: number, cpuT
 
       {/* Center status indicator */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div 
+        <div
           className={`w-16 h-16 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-500`}
-          style={{ 
+          style={{
             backgroundColor: `rgba(0,0,0,0.7)`,
             border: `2px solid ${status.color}`,
             color: status.color,
             boxShadow: `0 0 10px ${status.color}`
           }}
         >
-          <motion.div 
+          <motion.div
             animate={{ opacity: [0.7, 1, 0.7] }}
             transition={{ duration: 2, repeat: Infinity }}
           >
@@ -771,18 +771,18 @@ const Main = () => {
   // Card animation variants
   const cardVariants = {
     initial: { scale: 1, opacity: 0.9 },
-    hover: { 
-      scale: 1.03, 
+    hover: {
+      scale: 1.03,
       opacity: 1,
-      transition: { 
+      transition: {
         duration: 0.3,
         type: "spring",
         stiffness: 300
       }
     },
-    tap: { 
+    tap: {
       scale: 0.97,
-      transition: { 
+      transition: {
         duration: 0.1,
         type: "spring",
         stiffness: 500
@@ -796,44 +796,39 @@ const Main = () => {
         <span>System Information: KunalOS</span>
         <span className="text-sm font-normal">VESIT Mumbai</span>
       </div>
-      
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 flex-1">
-        {/* System Performance Card */}
-        <motion.div 
-          initial="initial"
-          whileHover="hover"
-          whileTap="tap"
-          variants={cardVariants}
-          className="cyber-card p-8 flex flex-col relative min-h-[300px]"
-        >
-          <CardDots count={15} />
-          <div className="flex items-center gap-3 mb-4 text-[#02d8fc] text-xl z-10">
-            <motion.div
-              animate={{ rotate: [0, 360] }}
-              transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-            >
-              <FontAwesomeIcon icon={faMicrochip} />
-            </motion.div>
-            <div>System Performance</div>
-          </div>
-          
-          <div className="flex flex-wrap gap-8 justify-center">
-            {/* CPU Section - Gauge and Info */}
+
+      <div className="flex flex-col gap-6">
+        {/* Top row: CPU and GPU cards side by side */}
+        <div className="flex flex-col lg:flex-row gap-6">
+          {/* CPU Card */}
+          <motion.div
+            initial="initial"
+            whileHover="hover"
+            whileTap="tap"
+            variants={cardVariants}
+            className="cyber-card p-8 flex flex-col relative flex-1"
+          >
+            <CardDots count={15} />
+            <div className="flex items-center gap-3 mb-4 text-[#02d8fc] text-xl z-10">
+              <motion.div
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              >
+                <FontAwesomeIcon icon={faMicrochip} />
+              </motion.div>
+              <div>CPU Performance</div>
+            </div>
             <div className="flex flex-col items-center">
-              <CognitiveProcessingUnitGauge
-                value={cpuFrequency}
-                maxValue={4000}
-              />
-              
+              <CognitiveProcessingUnitGauge value={cpuFrequency} maxValue={4000} />
               {/* CPU Info directly under gauge */}
               <div className="mt-4 flex flex-col items-center space-y-2">
-                <div className="flex flex-col items-center">   
-                  <motion.span 
+                <div className="flex flex-col items-center">
+                  <motion.span
                     className="text-[#02d8fc] text-xs font-semibold uppercase tracking-wider mb-1 text-center"
-                    animate={{ 
+                    animate={{
                       textShadow: ['0 0 3px rgba(2,216,252,0.3)', '0 0 8px rgba(2,216,252,0.6)', '0 0 3px rgba(2,216,252,0.3)'],
                     }}
-                    transition={{ 
+                    transition={{
                       duration: 2,
                       repeat: Infinity,
                       ease: "easeInOut"
@@ -841,12 +836,12 @@ const Main = () => {
                   >
                     Cognitive Processing Unit
                   </motion.span>
-                  <motion.span 
+                  <motion.span
                     className="text-[#02d8fc] text-xs font-semibold uppercase tracking-wider text-center"
-                    animate={{ 
-                      opacity: [0.7, 1, 0.7] 
+                    animate={{
+                      opacity: [0.7, 1, 0.7]
                     }}
-                    transition={{ 
+                    transition={{
                       duration: 2,
                       repeat: Infinity,
                       ease: "easeInOut"
@@ -855,40 +850,82 @@ const Main = () => {
                     SynapseCore X1
                   </motion.span>
                 </div>
-
-                <div className="mt-2 space-y-2 w-full text-white">
-                  <div>CPU Temp: {cpuTemp}°C</div>
-                  <div className="flex flex-col">
-                    <span>Load: {cpuLoadPercent}%</span>
-                    <div className="w-full bg-blue-900/20 h-1.5 mt-1">
-                      <motion.div 
-                        initial={{ width: 0 }}
-                        animate={{ width: `${cpuLoadPercent}%` }}
-                        transition={{ duration: 1.5 }}
-                        className="bg-[#02d8fc] h-full"
-                      />
-                    </div>
-                  </div>
+                {/* Detailed CPU Information Table */}
+                <div className="mt-4 w-full max-w-md bg-blue-900/20 rounded-lg p-4 border border-[#02d8fc]/20">
+                  <table className="w-full text-[#02d8fc] text-sm">
+                    <tbody>
+                      <tr>
+                        <td className="py-1">Clock Speed</td>
+                        <td className="py-1 text-right">{cpuFrequency} MHz</td>
+                      </tr>
+                      <tr>
+                        <td className="py-1">Temperature</td>
+                        <td className="py-1 text-right">{cpuTemp}°C</td>
+                      </tr>
+                      <tr>
+                        <td className="py-1">Load</td>
+                        <td className="py-1 text-right">{cpuLoadPercent}%</td>
+                      </tr>
+                      <tr><td colSpan={2} className="pt-2 pb-1 font-semibold">Core Intelligence Modules</td></tr>
+                      <tr>
+                        <td className="py-1">• AI & Machine Learning</td>
+                        <td className="py-1 text-right"><span className="text-[#00ff88]">[ACTIVE]</span></td>
+                      </tr>
+                      <tr>
+                        <td className="py-1">• GenAI Exploration</td>
+                        <td className="py-1 text-right"><span className="text-[#00ff88]">[RUNNING - Adaptive]</span></td>
+                      </tr>
+                      <tr>
+                        <td className="py-1">• C++ System-Level Engine</td>
+                        <td className="py-1 text-right"><span className="text-[#02d8fc]">[IDLE - Low-Level Monitor]</span></td>
+                      </tr>
+                      <tr>
+                        <td className="py-1">• Java Backend Logic</td>
+                        <td className="py-1 text-right"><span className="text-[#02d8fc]">[STANDBY - API Services]</span></td>
+                      </tr>
+                      <tr>
+                        <td className="py-1">• DevOps/AWS Integrator</td>
+                        <td className="py-1 text-right"><span className="text-[#00ff88]">[CONNECTED - Cloud Uplink]</span></td>
+                      </tr>
+                      <tr>
+                        <td className="py-1">• Flutter UI Synapse</td>
+                        <td className="py-1 text-right"><span className="text-[#00ff88]">[ENGAGED - UI Threads]</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
-            
-            {/* GPU Section - Gauge and Info */}
+          </motion.div>
+          {/* GPU Card */}
+          <motion.div
+            initial="initial"
+            whileHover="hover"
+            whileTap="tap"
+            variants={cardVariants}
+            className="cyber-card p-8 flex flex-col relative flex-1"
+          >
+            <CardDots count={15} />
+            <div className="flex items-center gap-3 mb-4 text-[#f97316] text-xl z-10">
+              <motion.div
+                animate={{ rotate: [0, 360] }}
+                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+              >
+                <FontAwesomeIcon icon={faMicrochip} />
+              </motion.div>
+              <div>GPU Performance</div>
+            </div>
             <div className="flex flex-col items-center">
-              <CreativeRenderingCoreGauge
-                value={gpuFrequency}
-                maxValue={3000}
-              />
-              
+              <CreativeRenderingCoreGauge value={gpuFrequency} maxValue={3000} />
               {/* GPU Info directly under gauge */}
               <div className="mt-4 flex flex-col items-center space-y-2">
                 <div className="flex flex-col items-center">
-                  <motion.span 
+                  <motion.span
                     className="text-[#f97316] text-xs font-semibold uppercase tracking-wider mb-1 text-center"
-                    animate={{ 
+                    animate={{
                       textShadow: ['0 0 3px rgba(249,115,22,0.3)', '0 0 8px rgba(249,115,22,0.6)', '0 0 3px rgba(249,115,22,0.3)'],
                     }}
-                    transition={{ 
+                    transition={{
                       duration: 2,
                       repeat: Infinity,
                       ease: "easeInOut"
@@ -896,12 +933,12 @@ const Main = () => {
                   >
                     Creative Rendering Core
                   </motion.span>
-                  <motion.span 
+                  <motion.span
                     className="text-[#f97316] text-xs font-semibold uppercase tracking-wider text-center"
-                    animate={{ 
-                      opacity: [0.7, 1, 0.7] 
+                    animate={{
+                      opacity: [0.7, 1, 0.7]
                     }}
-                    transition={{ 
+                    transition={{
                       duration: 2,
                       repeat: Infinity,
                       ease: "easeInOut"
@@ -910,497 +947,504 @@ const Main = () => {
                     VisionCore Z
                   </motion.span>
                 </div>
+                {/* Detailed GPU Information Table */}
+                <div className="mt-4 w-full max-w-md bg-blue-900/20 rounded-lg p-4 border border-[#f97316]/20">
+                  <table className="w-full text-[#f97316] text-sm">
+                    <tbody>
+                      <tr>
+                        <td className="py-1">Clock Speed</td>
+                        <td className="py-1 text-right">{gpuFrequency} MHz</td>
+                      </tr>
+                      <tr>
+                        <td className="py-1">Temperature</td>
+                        <td className="py-1 text-right">{gpuTemp}°C</td>
+                      </tr>
+                      <tr>
+                        <td className="py-1">Load</td>
+                        <td className="py-1 text-right">{gpuLoadPercent}%</td>
+                      </tr>
+                      <tr><td colSpan={2} className="pt-2 pb-1 font-semibold">Core Visual Modules</td></tr>
+                      <tr>
+                        <td className="py-1">• Mobile App Dev (Flutter)</td>
+                        <td className="py-1 text-right"><span className="text-[#00ff88]">[LIVE RENDER]</span></td>
+                      </tr>
+                      <tr>
+                        <td className="py-1">• UI/UX Prototyping</td>
+                        <td className="py-1 text-right"><span className="text-[#00ff88]">[IN MOTION]</span></td>
+                      </tr>
+                      <tr>
+                        <td className="py-1">• Real-Time Interaction</td>
+                        <td className="py-1 text-right"><span className="text-[#00ff88]">[SMOOTH - 60 FPS]</span></td>
+                      </tr>
+                      <tr>
+                        <td className="py-1">• WebSocket Channels</td>
+                        <td className="py-1 text-right"><span className="text-[#00ff88]">[MULTITHREADING ACTIVE]</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+        {/* The rest of the cards below */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-start mt-6">
+          {/* Memory Card */}
+          <motion.div
+            variants={cardVariants}
+            initial="initial"
+            whileHover="hover"
+            whileTap="tap"
+            className="cyber-card p-8 flex flex-col relative"
+          >
+            <CardDots />
+            <div className="flex items-center gap-3 mb-4 text-[#02d8fc] text-xl z-10">
+              <motion.div
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              >
+                <FontAwesomeIcon icon={faMemory} />
+              </motion.div>
+              <div>🧠 Neural Cache Monitor</div>
+            </div>
 
-                <div className="mt-2 space-y-2 w-full text-white">
-                  <div>GPU Temp: {gpuTemp}°C</div>
-                  <div className="flex flex-col">
-                    <span>Load: {gpuLoadPercent}%</span>
-                    <div className="w-full bg-blue-900/20 h-1.5 mt-1">
-                      <motion.div 
+            <div className="space-y-4">
+              <div className="flex justify-between text-[#02d8fc] mb-1">
+                <span className="font-semibold">Memory Unit:</span>
+                <span className="text-[#00ff88]">Synaptic Storage 16GB+</span>
+              </div>
+              <div className="flex justify-between text-[#02d8fc] mb-1">
+                <span className="font-semibold">Total Utilization:</span>
+                <span className="text-[#00ff88]">60%</span>
+              </div>
+              <div className="w-full bg-blue-900/20 h-2 mb-4">
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: '60%' }}
+                  className="h-full bg-gradient-to-r from-[#02d8fc] to-[#00ff88]"
+                />
+              </div>
+
+              {/* Brain circuit image replacing SVG visualization */}
+
+              {/* Brain circuit image with enhanced animations */}
+              <div className="my-2 flex justify-center">
+                <motion.div
+                  className="relative w-40 h-40 md:w-48 md:h-48"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 1 }}
+                >
+                  <motion.img
+                    src="/braincircuit.png"
+                    alt="Neural Circuit Brain"
+                    className="w-full h-full object-contain z-20 relative"
+                    animate={{
+                      filter: ['brightness(1)', 'brightness(1.3)', 'brightness(1)'],
+                      scale: [1, 1.05, 1]
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+
+                  {/* Animated glow effect */}
+                  <motion.div
+                    className="absolute inset-0 rounded-full blur-xl z-10"
+                    style={{ backgroundColor: brainAnimColor }}
+                    animate={{
+                      opacity: [0.2, 0.5, 0.2],
+                      scale: [0.8, 1.2, 0.8],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  />
+
+                  {/* Pulsating ring effect */}
+                  <motion.div
+                    className="absolute inset-0 border-4 rounded-full z-30"
+                    style={{ borderColor: brainAnimColor }}
+                    animate={{
+                      scale: [0.7, 1.3, 0.7],
+                      opacity: [0.7, 0, 0.7],
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  />
+
+                  {/* Particle effect around the brain */}
+                  {[...Array(6)].map((_, i) => (
+                    <motion.div
+                      key={`particle-${i}`}
+                      className="absolute w-2 h-2 rounded-full z-30"
+                      style={{
+                        backgroundColor: i % 2 === 0 ? '#02d8fc' : '#00ff88',
+                        top: `${50 + 35 * Math.sin(i * Math.PI / 3)}%`,
+                        left: `${50 + 35 * Math.cos(i * Math.PI / 3)}%`,
+                      }}
+                      animate={{
+                        scale: [0.5, 1.5, 0.5],
+                        opacity: [0.3, 1, 0.3],
+                      }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        delay: i * 0.3,
+                        ease: "easeInOut"
+                      }}
+                    />
+                  ))}
+
+                  {/* Neural connections */}
+                  {[...Array(3)].map((_, i) => {
+                    const startAngle = i * 2 * Math.PI / 3;
+                    const endAngle = ((i + 1.5) % 3) * 2 * Math.PI / 3;
+                    const start = {
+                      x: 50 + 40 * Math.cos(startAngle),
+                      y: 50 + 40 * Math.sin(startAngle)
+                    };
+                    const end = {
+                      x: 50 + 40 * Math.cos(endAngle),
+                      y: 50 + 40 * Math.sin(endAngle)
+                    };
+
+                    return (
+                      <motion.div
+                        key={`connection-${i}`}
+                        className="absolute h-0.5 rounded-full origin-left z-10"
+                        style={{
+                          top: `${start.y}%`,
+                          left: `${start.x}%`,
+                          backgroundColor: brainAnimColor,
+                          width: `${Math.hypot(end.x - start.x, end.y - start.y)}%`,
+                          transform: `rotate(${Math.atan2(end.y - start.y, end.x - start.x)}rad)`,
+                        }}
+                        animate={{
+                          opacity: [0, 1, 0],
+                          scaleX: [0.5, 1, 0.5],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          delay: i * 0.5,
+                          ease: "easeInOut"
+                        }}
+                      />
+                    );
+                  })}
+                </motion.div>
+              </div>
+
+              <div className="mt-4">
+                <div className="text-sm text-[#02d8fc] mb-2">Module Allocation:</div>
+                <div className="space-y-3">
+                  <div className="space-y-1">
+                    <div className="flex justify-between text-[#02d8fc] text-sm">
+                      <span>Flutter</span>
+                      <span>40%</span>
+                    </div>
+                    <div className="w-full bg-blue-900/20 h-2">
+                      <motion.div
                         initial={{ width: 0 }}
-                        animate={{ width: `${gpuLoadPercent}%` }}
-                        transition={{ duration: 1.5 }}
-                        className="bg-[#f97316] h-full"
+                        animate={{ width: '40%' }}
+                        className="h-full bg-[#02d8fc]"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-1">
+                    <div className="flex justify-between text-[#02d8fc] text-sm">
+                      <span>Node.js</span>
+                      <span>35%</span>
+                    </div>
+                    <div className="w-full bg-blue-900/20 h-2">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: '35%' }}
+                        className="h-full bg-[#00ff88]"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-1">
+                    <div className="flex justify-between text-[#02d8fc] text-sm">
+                      <span>GenAI</span>
+                      <span>15%</span>
+                    </div>
+                    <div className="w-full bg-blue-900/20 h-2">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: '15%' }}
+                        className="h-full bg-[#ff5f00]"
                       />
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-          
-          <div className="flex items-center gap-2 justify-center mt-6 text-white">
-            <span>Fan Speed:</span>
-            <motion.span
-              animate={{
-                opacity: [1, 0.7, 1]
-              }}
-              transition={{
-                duration: 1.5,
-                repeat: Infinity,
-                ease: "easeInOut"
-              }}
-            >
-              {fanSpeed} RPM
-            </motion.span>
-          </div>
-        </motion.div>
 
-        {/* Memory Card */}
-        <motion.div 
-          variants={cardVariants}
-          initial="initial"
-          whileHover="hover"
-          whileTap="tap"
-          className="cyber-card p-8 flex flex-col relative min-h-[300px]"
-        >
-          <CardDots />
-          <div className="flex items-center gap-3 mb-4 text-[#02d8fc] text-xl z-10">
-            <motion.div
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              <FontAwesomeIcon icon={faMemory} />
-            </motion.div>
-            <div>🧠 Neural Cache Monitor</div>
-          </div>
-          
-          <div className="space-y-4">
-            <div className="flex justify-between text-[#02d8fc] mb-1">
-              <span className="font-semibold">Memory Unit:</span>
-              <span className="text-[#00ff88]">Synaptic Storage 16GB+</span>
+              <div className="mt-4 grid grid-cols-2 gap-2">
+                <div className="flex items-center gap-1">
+                  <div className="h-2 w-2 rounded-full bg-[#02d8fc] animate-pulse"></div>
+                  <span className="text-xs text-[#02d8fc]">Cache Integrity: Optimal</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <div className="h-2 w-2 rounded-full bg-[#00ff88] animate-pulse"></div>
+                  <span className="text-xs text-[#02d8fc]">Swap Memory: Auto-Expand</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <div className="h-2 w-2 rounded-full bg-[#ff5f00] animate-pulse"></div>
+                  <span className="text-xs text-[#02d8fc]">Learning Rate: 1.2x/Day</span>
+                </div>
+              </div>
             </div>
-            <div className="flex justify-between text-[#02d8fc] mb-1">
-              <span className="font-semibold">Total Utilization:</span>
-              <span className="text-[#00ff88]">60%</span>
-            </div>
-            <div className="w-full bg-blue-900/20 h-2 mb-4">
+          </motion.div>
+
+          {/* Project Stats Card */}
+          <motion.div
+            variants={cardVariants}
+            initial="initial"
+            whileHover="hover"
+            whileTap="tap"
+            className="cyber-card p-8 flex flex-col relative"
+          >
+            <CardDots />
+            <div className="flex items-center gap-3 mb-4 text-[#02d8fc] text-xl z-10">
               <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: '60%' }}
-                className="h-full bg-gradient-to-r from-[#02d8fc] to-[#00ff88]"
-              />
-            </div>
-
-            {/* Brain circuit image replacing SVG visualization */}
-
-            {/* Brain circuit image with enhanced animations */}
-            <div className="my-2 flex justify-center">
-              <motion.div 
-                className="relative w-40 h-40 md:w-48 md:h-48"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
+                animate={{
+                  rotateY: [0, 360],
+                  scale: [1, 1.1, 1]
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
               >
-                <motion.img 
-                  src="/braincircuit.png" 
-                  alt="Neural Circuit Brain" 
-                  className="w-full h-full object-contain z-20 relative"
-                  animate={{ 
-                    filter: ['brightness(1)', 'brightness(1.3)', 'brightness(1)'],
-                    scale: [1, 1.05, 1]
-                  }}
-                  transition={{ 
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-                
-                {/* Animated glow effect */}
-                <motion.div 
-                  className="absolute inset-0 rounded-full blur-xl z-10"
-                  style={{ backgroundColor: brainAnimColor }}
-                  animate={{ 
-                    opacity: [0.2, 0.5, 0.2],
-                    scale: [0.8, 1.2, 0.8],
-                  }}
-                  transition={{ 
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                />
-                
-                {/* Pulsating ring effect */}
-                <motion.div
-                  className="absolute inset-0 border-4 rounded-full z-30"
-                  style={{ borderColor: brainAnimColor }}
-                  animate={{
-                    scale: [0.7, 1.3, 0.7],
-                    opacity: [0.7, 0, 0.7],
-                  }}
-                  transition={{
-                    duration: 3,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                />
-                
-                {/* Particle effect around the brain */}
-                {[...Array(6)].map((_, i) => (
-                  <motion.div
-                    key={`particle-${i}`}
-                    className="absolute w-2 h-2 rounded-full z-30"
-                    style={{ 
-                      backgroundColor: i % 2 === 0 ? '#02d8fc' : '#00ff88',
-                      top: `${50 + 35 * Math.sin(i * Math.PI / 3)}%`,
-                      left: `${50 + 35 * Math.cos(i * Math.PI / 3)}%`,
-                    }}
-                    animate={{
-                      scale: [0.5, 1.5, 0.5],
-                      opacity: [0.3, 1, 0.3],
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: i * 0.3,
-                      ease: "easeInOut"
-                    }}
-                  />
-                ))}
-                
-                {/* Neural connections */}
-                {[...Array(3)].map((_, i) => {
-                  const startAngle = i * 2 * Math.PI / 3;
-                  const endAngle = ((i + 1.5) % 3) * 2 * Math.PI / 3;
-                  const start = {
-                    x: 50 + 40 * Math.cos(startAngle),
-                    y: 50 + 40 * Math.sin(startAngle)
-                  };
-                  const end = {
-                    x: 50 + 40 * Math.cos(endAngle),
-                    y: 50 + 40 * Math.sin(endAngle)
-                  };
-                  
-                  return (
-                    <motion.div
-                      key={`connection-${i}`}
-                      className="absolute h-0.5 rounded-full origin-left z-10"
-                      style={{
-                        top: `${start.y}%`,
-                        left: `${start.x}%`,
-                        backgroundColor: brainAnimColor,
-                        width: `${Math.hypot(end.x - start.x, end.y - start.y)}%`,
-                        transform: `rotate(${Math.atan2(end.y - start.y, end.x - start.x)}rad)`,
-                      }}
-                      animate={{
-                        opacity: [0, 1, 0],
-                        scaleX: [0.5, 1, 0.5],
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        delay: i * 0.5,
-                        ease: "easeInOut"
-                      }}
-                    />
-                  );
-                })}
+                <FontAwesomeIcon icon={faHdd} />
               </motion.div>
+              <div>🚀 Project Stats – Dev Throughput Dashboard</div>
             </div>
 
-            <div className="mt-4">
-              <div className="text-sm text-[#02d8fc] mb-2">Module Allocation:</div>
-              <div className="space-y-3">
-                <div className="space-y-1">
-                  <div className="flex justify-between text-[#02d8fc] text-sm">
-                    <span>Flutter</span>
-                    <span>40%</span>
-                  </div>
-                  <div className="w-full bg-blue-900/20 h-2">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: '40%' }}
-                      className="h-full bg-[#02d8fc]"
-                    />
-                  </div>
+            <div className="space-y-4 text-[#02d8fc]">
+              <div className="flex justify-between items-center mb-2">
+                <span className="font-semibold">Project Engine:</span>
+                <span className="text-[#00ff88] font-mono">RenderCore V2.1</span>
+              </div>
+
+              <div className="flex justify-between items-center mb-2">
+                <span className="font-semibold">Status:</span>
+                <motion.span
+                  className="bg-green-500/20 text-green-400 px-2 py-0.5 rounded-md font-medium"
+                  animate={{ opacity: [0.8, 1, 0.8] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  ACTIVE
+                </motion.span>
+              </div>
+
+              <div className="bg-blue-900/30 rounded-lg p-3 space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="flex items-center gap-1">
+                    <span className="text-[#02d8fc]">🚀</span>
+                    Projects Deployed
+                  </span>
+                  <span className="text-[#00ff88]">7+ Live Builds</span>
                 </div>
-                
-                <div className="space-y-1">
-                  <div className="flex justify-between text-[#02d8fc] text-sm">
-                    <span>Node.js</span>
-                    <span>35%</span>
-                  </div>
-                  <div className="w-full bg-blue-900/20 h-2">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: '35%' }}
-                      className="h-full bg-[#00ff88]"
-                    />
-                  </div>
+
+                <div className="flex justify-between items-center">
+                  <span className="flex items-center gap-1">
+                    <span className="text-[#02d8fc]">🧪</span>
+                    Active Repositories
+                  </span>
+                  <span className="text-[#00ff88]">16+ In Development</span>
                 </div>
-                
-                <div className="space-y-1">
-                  <div className="flex justify-between text-[#02d8fc] text-sm">
-                    <span>GenAI</span>
-                    <span>15%</span>
-                  </div>
-                  <div className="w-full bg-blue-900/20 h-2">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: '15%' }}
-                      className="h-full bg-[#ff5f00]"
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            <div className="mt-4 grid grid-cols-2 gap-2">
-              <div className="flex items-center gap-1">
-                <div className="h-2 w-2 rounded-full bg-[#02d8fc] animate-pulse"></div>
-                <span className="text-xs text-[#02d8fc]">Cache Integrity: Optimal</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <div className="h-2 w-2 rounded-full bg-[#00ff88] animate-pulse"></div>
-                <span className="text-xs text-[#02d8fc]">Swap Memory: Auto-Expand</span>
-              </div>
-              <div className="flex items-center gap-1">
-                <div className="h-2 w-2 rounded-full bg-[#ff5f00] animate-pulse"></div>
-                <span className="text-xs text-[#02d8fc]">Learning Rate: 1.2x/Day</span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-        
-        {/* Project Stats Card */}
-        <motion.div 
-          variants={cardVariants}
-          initial="initial"
-          whileHover="hover"
-          whileTap="tap"
-          className="cyber-card p-8 flex flex-col relative min-h-[300px]"
-        >
-          <CardDots />
-          <div className="flex items-center gap-3 mb-4 text-[#02d8fc] text-xl z-10">
-            <motion.div
-              animate={{ 
-                rotateY: [0, 360],
-                scale: [1, 1.1, 1]
-              }}
-              transition={{ duration: 3, repeat: Infinity }}
-            >
-              <FontAwesomeIcon icon={faHdd} />
-            </motion.div>
-            <div>🚀 Project Stats – Dev Throughput Dashboard</div>
-          </div>
-          
-          <div className="space-y-4 text-[#02d8fc]">
-            <div className="flex justify-between items-center mb-2">
-              <span className="font-semibold">Project Engine:</span>
-              <span className="text-[#00ff88] font-mono">RenderCore V2.1</span>
-            </div>
-            
-            <div className="flex justify-between items-center mb-2">
-              <span className="font-semibold">Status:</span>
-              <motion.span 
-                className="bg-green-500/20 text-green-400 px-2 py-0.5 rounded-md font-medium"
-                animate={{ opacity: [0.8, 1, 0.8] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                ACTIVE
-              </motion.span>
-            </div>
-            
-            <div className="bg-blue-900/30 rounded-lg p-3 space-y-3">
-              <div className="flex justify-between items-center">
-                <span className="flex items-center gap-1">
-                  <span className="text-[#02d8fc]">🚀</span> 
-                  Projects Deployed
-                </span>
-                <span className="text-[#00ff88]">7+ Live Builds</span>
-              </div>
-              
-              <div className="flex justify-between items-center">
-                <span className="flex items-center gap-1">
-                  <span className="text-[#02d8fc]">🧪</span> 
-                  Active Repositories
-                </span>
-                <span className="text-[#00ff88]">16+ In Development</span>
-              </div>
-              
-              <div className="flex justify-between items-center">
-                <span className="flex items-center gap-1">
-                  <span className="text-[#02d8fc]">✅</span> 
-                  Availability
-                </span>
-                <span className="flex gap-1 text-[#00ff88]">
-                  <span className="bg-blue-900/50 px-1 rounded text-xs">Freelance</span>
-                  <span className="bg-blue-900/50 px-1 rounded text-xs">Internships</span>
-                  <span className="bg-blue-900/50 px-1 rounded text-xs">Collabs</span>
-                </span>
-              </div>
-            </div>
-            
-            <div className="space-y-3 mt-2">
-              <div className="flex justify-between items-center">
-                <span className="flex items-center gap-1">
-                  <span>⚙️</span> Project Capacity
-                </span>
-                <span>85%</span>
-              </div>
-              <div className="w-full bg-blue-900/20 h-2">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: '85%' }}
-                  className="h-full bg-gradient-to-r from-[#02d8fc] to-[#0ff]"
-                />
-              </div>
-              
-              <div className="flex justify-between items-center mt-2">
-                <span className="flex items-center gap-1">
-                  <span>⚡</span> System Load
-                </span>
-                <span className="text-[#00ff88]">Balanced</span>
-              </div>
-              
-              <div className="flex justify-between items-center">
-                <span className="flex items-center gap-1">
-                  <span>🟢</span> Upgrade Mode
-                </span>
-                <span className="text-[#00ff88] text-sm">Continuous Learning Enabled</span>
-              </div>
-              
-              {/* Progress ring visualization */}
-              <div className="flex justify-center mt-2">
-                <svg width="80" height="80" viewBox="0 0 100 100" className="z-10">
-                  <circle cx="50" cy="50" r="40" fill="none" stroke="#02d8fc20" strokeWidth="8" />
-                  
-                  <motion.circle
-                    cx="50"
-                    cy="50"
-                    r="40"
-                    fill="none"
-                    stroke="#02d8fc"
-                    strokeWidth="8"
-                    strokeDasharray={2 * Math.PI * 40}
-                    strokeDashoffset={2 * Math.PI * 40 * (1 - 0.85)}
-                    strokeLinecap="round"
-                    transform="rotate(-90 50 50)"
-                  />
-                  
-                  {/* Engine dots */}
-                  {Array.from({ length: 4 }).map((_, i) => {
-                    const angle = i * (Math.PI / 2);
-                    const x = 50 + 40 * Math.cos(angle);
-                    const y = 50 + 40 * Math.sin(angle);
-                    return (
-                      <motion.circle
-                        key={`engine-${i}`}
-                        cx={x}
-                        cy={y}
-                        r={3}
-                        fill="#02d8fc"
-                        animate={{
-                          opacity: [0.5, 1, 0.5],
-                          scale: [1, 1.5, 1]
-                        }}
-                        transition={{
-                          duration: 2,
-                          delay: i * 0.5,
-                          repeat: Infinity
-                        }}
-                      />
-                    );
-                  })}
-                  
-                  <text x="50" y="45" textAnchor="middle" fill="#02d8fc" fontSize="12">85%</text>
-                  <text x="50" y="60" textAnchor="middle" fill="#02d8fc" fontSize="8">CAPACITY</text>
-                </svg>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-        
-        {/* System Health Card */}
-        <motion.div 
-          variants={cardVariants}
-          initial="initial"
-          whileHover="hover"
-          whileTap="tap"
-          className="cyber-card p-8 flex flex-col relative min-h-[300px]"
-        >
-          <CardDots count={15} />
-          <div className="flex items-center gap-3 mb-4 text-[#02d8fc] text-xl z-10">
-            <motion.div
-              animate={{ 
-                scale: [1, 1.2, 1],
-                rotate: [0, 10, -10, 0]
-              }}
-              transition={{ duration: 3, repeat: Infinity }}
-            >
-              <FontAwesomeIcon icon={faTemperatureHalf} />
-            </motion.div>
-            <div>System Health</div>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Left side - Heat Visualizer */}
-            <div className="flex flex-col items-center justify-center space-y-2">
-              <HeatVisualizer 
-                fanSpeed={fanSpeed}
-                cpuTemp={cpuTemp}
-                gpuTemp={gpuTemp}
-              />
-              
-              <div className="text-center text-[#02d8fc]">
-                <div className="font-mono text-sm">
-                  <motion.span
-                    animate={{
-                      opacity: [1, 0.7, 1]
-                    }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  >
-                    Fan: {fanSpeed} RPM
-                  </motion.span>
-                </div>
-                <div className="font-mono text-sm">
-                  <motion.span
-                    animate={{
-                      opacity: [1, 0.7, 1]
-                    }}
-                    transition={{
-                      duration: 1.5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: 0.5
-                    }}
-                  >
-                    Avg Temp: {Math.round((cpuTemp + gpuTemp) / 2)}°C
-                  </motion.span>
+
+                <div className="flex justify-between items-center">
+                  <span className="flex items-center gap-1">
+                    <span className="text-[#02d8fc]">✅</span>
+                    Availability
+                  </span>
+                  <span className="flex gap-1 text-[#00ff88]">
+                    <span className="bg-blue-900/50 px-1 rounded text-xs">Freelance</span>
+                    <span className="bg-blue-900/50 px-1 rounded text-xs">Internships</span>
+                    <span className="bg-blue-900/50 px-1 rounded text-xs">Collabs</span>
+                  </span>
                 </div>
               </div>
-            </div>
-            
-            {/* Right side - Status indicators */}
-            <div className="space-y-3 text-[#02d8fc]">
-              <HealthStat name="Work-Life Balance" value="Optimal" icon="🟢" />
-              <HealthStat name="Coffee Level" value="85%" icon="☕" />
-              <HealthStat name="Bug Count" value="Minimal" icon="🔧" />
-              <HealthStat name="Stress Level" value="Low" icon="🧘‍♂️" />
-              <HealthStat name="Motivation" value="Overclocked" icon="💯" />
-              
-              <div className="mt-3">
-                <div className="flex justify-between mb-1">
-                  <span>Overall Health</span>
-                  <span>95%</span>
+
+              <div className="space-y-3 mt-2">
+                <div className="flex justify-between items-center">
+                  <span className="flex items-center gap-1">
+                    <span>⚙️</span> Project Capacity
+                  </span>
+                  <span>85%</span>
                 </div>
                 <div className="w-full bg-blue-900/20 h-2">
                   <motion.div
                     initial={{ width: 0 }}
-                    animate={{ width: '95%' }}
+                    animate={{ width: '85%' }}
                     className="h-full bg-gradient-to-r from-[#02d8fc] to-[#0ff]"
                   />
                 </div>
+
+                <div className="flex justify-between items-center mt-2">
+                  <span className="flex items-center gap-1">
+                    <span>⚡</span> System Load
+                  </span>
+                  <span className="text-[#00ff88]">Balanced</span>
+                </div>
+
+                <div className="flex justify-between items-center">
+                  <span className="flex items-center gap-1">
+                    <span>🟢</span> Upgrade Mode
+                  </span>
+                  <span className="text-[#00ff88] text-sm">Continuous Learning Enabled</span>
+                </div>
+
+                {/* Progress ring visualization */}
+                <div className="flex justify-center mt-2">
+                  <svg width="80" height="80" viewBox="0 0 100 100" className="z-10">
+                    <circle cx="50" cy="50" r="40" fill="none" stroke="#02d8fc20" strokeWidth="8" />
+
+                    <motion.circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      fill="none"
+                      stroke="#02d8fc"
+                      strokeWidth="8"
+                      strokeDasharray={2 * Math.PI * 40}
+                      strokeDashoffset={2 * Math.PI * 40 * (1 - 0.85)}
+                      strokeLinecap="round"
+                      transform="rotate(-90 50 50)"
+                    />
+
+                    {/* Engine dots */}
+                    {Array.from({ length: 4 }).map((_, i) => {
+                      const angle = i * (Math.PI / 2);
+                      const x = 50 + 40 * Math.cos(angle);
+                      const y = 50 + 40 * Math.sin(angle);
+                      return (
+                        <motion.circle
+                          key={`engine-${i}`}
+                          cx={x}
+                          cy={y}
+                          r={3}
+                          fill="#02d8fc"
+                          animate={{
+                            opacity: [0.5, 1, 0.5],
+                            scale: [1, 1.5, 1]
+                          }}
+                          transition={{
+                            duration: 2,
+                            delay: i * 0.5,
+                            repeat: Infinity
+                          }}
+                        />
+                      );
+                    })}
+
+                    <text x="50" y="45" textAnchor="middle" fill="#02d8fc" fontSize="12">85%</text>
+                    <text x="50" y="60" textAnchor="middle" fill="#02d8fc" fontSize="8">CAPACITY</text>
+                  </svg>
+                </div>
               </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+
+          {/* System Health Card */}
+          <motion.div
+            variants={cardVariants}
+            initial="initial"
+            whileHover="hover"
+            whileTap="tap"
+            className="cyber-card p-8 flex flex-col relative"
+          >
+            <CardDots count={15} />
+            <div className="flex items-center gap-3 mb-4 text-[#02d8fc] text-xl z-10">
+              <motion.div
+                animate={{
+                  scale: [1, 1.2, 1],
+                  rotate: [0, 10, -10, 0]
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >
+                <FontAwesomeIcon icon={faTemperatureHalf} />
+              </motion.div>
+              <div>System Health</div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {/* Left side - Heat Visualizer */}
+              <div className="flex flex-col items-center justify-center space-y-2">
+                <HeatVisualizer
+                  fanSpeed={fanSpeed}
+                  cpuTemp={cpuTemp}
+                  gpuTemp={gpuTemp}
+                />
+
+                <div className="text-center text-[#02d8fc]">
+                  <div className="font-mono text-sm">
+                    <motion.span
+                      animate={{
+                        opacity: [1, 0.7, 1]
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    >
+                      Fan: {fanSpeed} RPM
+                    </motion.span>
+                  </div>
+                  <div className="font-mono text-sm">
+                    <motion.span
+                      animate={{
+                        opacity: [1, 0.7, 1]
+                      }}
+                      transition={{
+                        duration: 1.5,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                        delay: 0.5
+                      }}
+                    >
+                      Avg Temp: {Math.round((cpuTemp + gpuTemp) / 2)}°C
+                    </motion.span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right side - Status indicators */}
+              <div className="space-y-3 text-[#02d8fc]">
+                <HealthStat name="Work-Life Balance" value="Optimal" icon="🟢" />
+                <HealthStat name="Coffee Level" value="85%" icon="☕" />
+                <HealthStat name="Bug Count" value="Minimal" icon="🔧" />
+                <HealthStat name="Stress Level" value="Low" icon="🧘‍♂️" />
+                <HealthStat name="Motivation" value="Overclocked" icon="💯" />
+
+                <div className="mt-3">
+                  <div className="flex justify-between mb-1">
+                    <span>Overall Health</span>
+                    <span>95%</span>
+                  </div>
+                  <div className="w-full bg-blue-900/20 h-2">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: '95%' }}
+                      className="h-full bg-gradient-to-r from-[#02d8fc] to-[#0ff]"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </div>
   );
