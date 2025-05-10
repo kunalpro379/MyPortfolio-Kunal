@@ -1,0 +1,587 @@
+{
+     "projects": [
+          {
+               "id": "PRJ-001",
+               "title": "Flutter Blog App",
+               "schema": "FLUTTER.blog.v1",
+               "description": "A modern blog application built with Flutter using Clean Architecture, BLoC pattern, and Supabase backend.",
+               "tech": [
+                    "Flutter",
+                    "Dart",
+                    "Supabase",
+                    "Hive",
+                    "BLoC"
+               ],
+               "status": "COMPLETE",
+               "progress": 100,
+               "tables": [
+                    "profiles",
+                    "blogs",
+                    "topics"
+               ],
+               "timestamp": "2024-01-15T10:20:30Z",
+               "connections": [
+                    "SUPABASE_DB",
+                    "SUPABASE_AUTH",
+                    "SUPABASE_STORAGE"
+               ]
+          },
+          {
+               "id": "PRJ-002",
+               "title": "Sketch to Face GAN",
+               "schema": "GAN.face.v1",
+               "description": "Deep learning model to convert hand-drawn face sketches into realistic face images using GAN architecture.",
+               "tech": [
+                    "Python",
+                    "TensorFlow",
+                    "Pix2Pix GAN",
+                    "OpenCV"
+               ],
+               "status": "IN_PROGRESS",
+               "progress": 85,
+               "tables": [
+                    "training_data",
+                    "model_versions",
+                    "conversion_logs"
+               ],
+               "timestamp": "2024-02-28T14:10:45Z",
+               "connections": [
+                    "KAGGLE_DATASET",
+                    "MODEL_SERVER"
+               ]
+          },
+          {
+               "id": "PRJ-003",
+               "title": "AI Research Platform",
+               "schema": "AI.research.v2",
+               "description": "AI-powered research collaboration platform with paper analysis, real-time collaboration, and intelligent recommendations.",
+               "tech": [
+                    "React",
+                    "Node.js",
+                    "MongoDB",
+                    "Flask",
+                    "Groq LLM"
+               ],
+               "status": "COMPLETE",
+               "progress": 100,
+               "tables": [
+                    "research_papers",
+                    "collaborations",
+                    "user_profiles"
+               ],
+               "timestamp": "2024-03-10T09:15:22Z",
+               "connections": [
+                    "MONGODB",
+                    "AWS_STORAGE",
+                    "AI_MODEL_SERVER"
+               ]
+          },
+          {
+               "id": "PRJ-004",
+               "title": "Scalable Cloud IDE",
+               "schema": "CLOUD.ide.v3",
+               "description": "Cloud-native IDE with Kubernetes-powered isolated coding environments, real-time collaboration, AI coding assistance, and integrated canvas.",
+               "tech": [
+                    "TypeScript",
+                    "Kubernetes",
+                    "AWS",
+                    "WebSocket",
+                    "Docker",
+                    "CI/CD"
+               ],
+               "status": "IN_PROGRESS",
+               "progress": 65,
+               "tables": [
+                    "user_sessions",
+                    "project_snapshots",
+                    "collaboration_logs"
+               ],
+               "timestamp": "2024-04-05T08:45:12Z",
+               "connections": [
+                    "KUBERNETES_CLUSTER",
+                    "AWS_S3_STORAGE",
+                    "CODE_EXECUTION_ENGINE"
+               ]
+          },
+          {
+               "id": "PRJ-005",
+               "title": "Multi-User Remote Desktop",
+               "schema": "RDP.concurrent.v2",
+               "description": "Java-based remote desktop solution enabling multiple concurrent users on a single host with conflict resolution using Redis queues and Kafka.",
+               "tech": [
+                    "Java",
+                    "Kafka",
+                    "Redis",
+                    "AWS EKS",
+                    "WebRTC",
+                    "X11 Forwarding"
+               ],
+               "status": "COMPLETE",
+               "progress": 100,
+               "tables": [
+                    "session_ownership",
+                    "input_queues",
+                    "display_frames",
+                    "chat_messages"
+               ],
+               "timestamp": "2023-11-20T16:30:45Z",
+               "connections": [
+                    "KUBERNETES_CONTROL_PLANE",
+                    "REDIS_CLUSTER",
+                    "KAFKA_BROKERS"
+               ]
+          },
+          {
+               "id": "PRJ-006",
+               "title": "Custom VPN Solution",
+               "schema": "NET.vpn.v1",
+               "description": "Linux-based VPN implementation using TUN/TAP interfaces with OpenSSL encryption, NAT routing, and firewall configuration.",
+               "tech": [
+                    "C++",
+                    "Linux",
+                    "OpenSSL",
+                    "TUN/TAP",
+                    "iptables"
+               ],
+               "status": "COMPLETE",
+               "progress": 100,
+               "tables": [
+                    "ssl_certificates",
+                    "network_rules",
+                    "connection_logs"
+               ],
+               "timestamp": "2023-10-15T12:05:33Z",
+               "connections": [
+                    "TUN_INTERFACE",
+                    "SSL_TUNNEL",
+                    "NAT_GATEWAY"
+               ],
+               "features": [
+                    "Virtual network interfaces",
+                    "SSL encrypted tunnel",
+                    "NAT and routing configuration",
+                    "Firewall integration",
+                    "Certificate-based authentication"
+               ]
+          },
+          {
+               "id": "PRJ-007",
+               "title": "Parallel File Encryptor",
+               "schema": "CRYPTO.file.v1",
+               "description": "Multithreaded file encryption/decryption system using OpenSSL AES with shared memory and semaphore-based synchronization.",
+               "tech": [
+                    "C++",
+                    "OpenSSL",
+                    "Thread Pool",
+                    "Shared Memory",
+                    "Semaphores"
+               ],
+               "status": "COMPLETE",
+               "progress": 100,
+               "tables": [
+                    "encryption_tasks",
+                    "file_metadata",
+                    "processing_logs"
+               ],
+               "timestamp": "2023-09-18T14:22:10Z",
+               "connections": [
+                    "TASK_QUEUE",
+                    "THREAD_POOL",
+                    "FILE_STORAGE"
+               ],
+               "performance": {
+                    "throughput": "2.5GB/min",
+                    "threads": 8,
+                    "encryption": "AES-256-CBC"
+               }
+          },
+          {
+               "id": "PRJ-008",
+               "title": "Multithreaded Proxy Webserver",
+               "schema": "NET.proxy.v1",
+               "description": "High-performance web proxy server with LRU caching, implemented in C++ with multithreading support.",
+               "tech": [
+                    "C++",
+                    "Sockets",
+                    "LRU Cache",
+                    "Multithreading",
+                    "HTTP"
+               ],
+               "status": "COMPLETE",
+               "progress": 100,
+               "tables": [
+                    "request_logs",
+                    "cache_entries",
+                    "connection_stats"
+               ],
+               "timestamp": "2023-08-22T11:45:27Z",
+               "connections": [
+                    "CLIENT_INTERFACE",
+                    "UPSTREAM_SERVERS",
+                    "CACHE_STORE"
+               ],
+               "metrics": {
+                    "max_connections": 1024,
+                    "cache_hit_rate": "92%",
+                    "throughput": "8500 req/sec"
+               }
+          },
+          {
+               "id": "PRJ-009",
+               "title": "Deployfy - Vercel Clone",
+               "schema": "CLOUD.deploy.v1",
+               "description": "GitHub-integrated deployment platform that automatically builds and deploys code to AWS infrastructure with preview URLs.",
+               "tech": [
+                    "Node.js",
+                    "AWS",
+                    "Kubernetes",
+                    "GitHub Actions",
+                    "Terraform"
+               ],
+               "status": "IN_PROGRESS",
+               "progress": 75,
+               "tables": [
+                    "deployments",
+                    "build_logs",
+                    "project_configs"
+               ],
+               "timestamp": "2024-01-30T15:33:48Z",
+               "connections": [
+                    "GITHUB_API",
+                    "AWS_EKS",
+                    "S3_STORAGE",
+                    "CDN"
+               ],
+               "features": [
+                    "Git push to deploy",
+                    "Preview environments",
+                    "Auto-scaling",
+                    "Custom domains",
+                    "Rollback capability"
+               ]
+          },
+          {
+               "id": "PRJ-010",
+               "title": "DRM Video Streaming",
+               "schema": "MEDIA.drm.v2",
+               "description": "Secure video transcoding pipeline with HLS streaming, DRM protection, and adaptive bitrate delivery.",
+               "tech": [
+                    "Node.js",
+                    "FFmpeg",
+                    "AWS S3",
+                    "HLS",
+                    "DRM"
+               ],
+               "status": "COMPLETE",
+               "progress": 100,
+               "tables": [
+                    "video_assets",
+                    "transcoding_jobs",
+                    "encryption_keys"
+               ],
+               "timestamp": "2023-12-13T05:53:06Z",
+               "connections": [
+                    "S3_TEMP_BUCKET",
+                    "SQS_QUEUE",
+                    "PROCESSING_CLUSTER",
+                    "CDN"
+               ],
+               "workflow": {
+                    "steps": [
+                         "S3 upload trigger",
+                         "FFmpeg transcoding",
+                         "HLS segmentation",
+                         "DRM encryption",
+                         "CDN distribution"
+                    ],
+                    "resolutions": [
+                         "360p",
+                         "480p",
+                         "720p",
+                         "1080p"
+                    ]
+               }
+          },
+          {
+               "id": "PRJ-011",
+               "title": "Social Networking API",
+               "schema": "API.social.v3",
+               "description": "Node.js backend for social networking platform with user profiles, connections, and content sharing.",
+               "tech": [
+                    "Node.js",
+                    "Express",
+                    "MongoDB",
+                    "Redis",
+                    "JWT"
+               ],
+               "status": "COMPLETE",
+               "progress": 100,
+               "tables": [
+                    "users",
+                    "posts",
+                    "connections",
+                    "notifications"
+               ],
+               "timestamp": "2023-07-10T13:20:15Z",
+               "connections": [
+                    "MONGODB_ATLAS",
+                    "REDIS_CACHE",
+                    "AWS_S3",
+                    "EMAIL_SERVICE"
+               ],
+               "endpoints": {
+                    "auth": [
+                         "/register",
+                         "/login",
+                         "/refresh"
+                    ],
+                    "users": [
+                         "/profile",
+                         "/search",
+                         "/connect"
+                    ],
+                    "content": [
+                         "/posts",
+                         "/feed",
+                         "/like"
+                    ]
+               }
+          },
+          {
+               "id": "PRJ-012",
+               "title": "Social Networking API (Node.js)",
+               "schema": "API.social.v1",
+               "description": "Backend API for a social networking platform built with Node.js, Express, and MongoDB.",
+               "tech": [
+                    "Node.js",
+                    "Express",
+                    "MongoDB",
+                    "JWT",
+                    "Socket.io"
+               ],
+               "status": "COMPLETE",
+               "progress": 100,
+               "tables": [
+                    "users",
+                    "posts",
+                    "comments",
+                    "friendships"
+               ],
+               "timestamp": "2023-06-15T09:30:00Z",
+               "connections": [
+                    "MONGODB_CLUSTER",
+                    "REDIS_CACHE",
+                    "CLIENT_APPLICATIONS"
+               ]
+          },
+          {
+               "id": "PRJ-013",
+               "title": "File Compression Tool (Huffman Coding)",
+               "schema": "ALGO.compression.v1",
+               "description": "File compression utility implementing Huffman coding algorithm for efficient data compression.",
+               "tech": [
+                    "C++",
+                    "Huffman Coding",
+                    "Data Structures",
+                    "File I/O"
+               ],
+               "status": "COMPLETE",
+               "progress": 100,
+               "tables": [
+                    "compression_stats",
+                    "frequency_tables",
+                    "file_metadata"
+               ],
+               "timestamp": "2023-05-20T14:15:22Z",
+               "connections": [
+                    "FILE_SYSTEM",
+                    "MEMORY_ALLOCATOR"
+               ]
+          },
+          {
+               "id": "PRJ-014",
+               "title": "Face Recognition (PCA & SVM)",
+               "schema": "AI.recognition.v2",
+               "description": "Face recognition system using Principal Component Analysis (PCA) for feature extraction and Support Vector Machines (SVM) for classification.",
+               "tech": [
+                    "Python",
+                    "OpenCV",
+                    "PCA",
+                    "SVM",
+                    "NumPy"
+               ],
+               "status": "COMPLETE",
+               "progress": 100,
+               "tables": [
+                    "face_embeddings",
+                    "training_data",
+                    "recognition_logs"
+               ],
+               "timestamp": "2023-04-10T11:45:33Z",
+               "connections": [
+                    "IMAGE_DATABASE",
+                    "MODEL_SERVER"
+               ]
+          },
+          {
+               "id": "PRJ-015",
+               "title": "Random Maze Generation Visualizer",
+               "schema": "ALGO.maze.v1",
+               "description": "C++ application that generates random mazes using various algorithms and visualizes the generation process.",
+               "tech": [
+                    "C++",
+                    "SFML",
+                    "Maze Algorithms",
+                    "GUI"
+               ],
+               "status": "COMPLETE",
+               "progress": 100,
+               "tables": [
+                    "generation_stats",
+                    "algorithm_metrics",
+                    "maze_configs"
+               ],
+               "timestamp": "2023-03-05T16:20:18Z",
+               "connections": [
+                    "RENDER_ENGINE",
+                    "INPUT_HANDLER"
+               ]
+          },
+          {
+               "id": "PRJ-016",
+               "title": "Snake Game (C++)",
+               "schema": "GAME.arcade.v1",
+               "description": "Classic Snake game implementation in C++ with modern graphics and scoring system.",
+               "tech": [
+                    "C++",
+                    "SFML",
+                    "Game Loop",
+                    "Collision Detection"
+               ],
+               "status": "COMPLETE",
+               "progress": 100,
+               "tables": [
+                    "high_scores",
+                    "game_settings",
+                    "player_stats"
+               ],
+               "timestamp": "2023-02-28T10:10:45Z",
+               "connections": [
+                    "RENDER_WINDOW",
+                    "INPUT_SYSTEM"
+               ]
+          },
+          {
+               "id": "PRJ-017",
+               "title": "OLDSOLD - Product Selling Website",
+               "schema": "WEB.ecommerce.v2",
+               "description": "Online marketplace for selling old products with user authentication, product listings, and transaction system.",
+               "tech": [
+                    "HTML/CSS",
+                    "JavaScript",
+                    "PHP",
+                    "MySQL"
+               ],
+               "status": "COMPLETE",
+               "progress": 100,
+               "tables": [
+                    "users",
+                    "products",
+                    "transactions",
+                    "reviews"
+               ],
+               "timestamp": "2023-01-15T13:25:30Z",
+               "connections": [
+                    "MYSQL_DATABASE",
+                    "PAYMENT_GATEWAY",
+                    "EMAIL_SERVICE"
+               ]
+          },
+          {
+               "id": "PRJ-018",
+               "title": "Amazon Clone (Node.js + Flutter)",
+               "schema": "APP.ecommerce.v3",
+               "description": "Full-stack Amazon clone with Node.js backend and Flutter mobile application.",
+               "tech": [
+                    "Node.js",
+                    "Flutter",
+                    "Firebase",
+                    "Express",
+                    "MongoDB"
+               ],
+               "status": "COMPLETE",
+               "progress": 100,
+               "tables": [
+                    "users",
+                    "products",
+                    "orders",
+                    "payments"
+               ],
+               "timestamp": "2022-12-10T08:40:15Z",
+               "connections": [
+                    "FIREBASE_AUTH",
+                    "MONGODB_ATLAS",
+                    "STRIPE_API"
+               ]
+          },
+          {
+               "id": "PRJ-019",
+               "title": "My Own Redis (Java)",
+               "schema": "DB.inmemory.v1",
+               "description": "Java implementation of a Redis-like in-memory key-value store with basic commands and persistence.",
+               "tech": [
+                    "Java",
+                    "Networking",
+                    "Data Structures",
+                    "Serialization"
+               ],
+               "status": "COMPLETE",
+               "progress": 100,
+               "tables": [
+                    "key_value_store",
+                    "command_logs",
+                    "client_sessions"
+               ],
+               "timestamp": "2022-11-05T17:30:22Z",
+               "connections": [
+                    "TCP_SOCKET",
+                    "MEMORY_STORE",
+                    "DISK_STORAGE"
+               ]
+          },
+          {
+               "id": "PRJ-020",
+               "title": "UP-IGRS: Grievance Redressal System",
+               "schema": "WEB.gov.v1",
+               "description": "AI-powered grievance management system for Uttar Pradesh with citizen portal, officials dashboard, and ML components.",
+               "tech": [
+                    "React",
+                    "Node.js",
+                    "PostgreSQL",
+                    "PyTorch",
+                    "NLP"
+               ],
+               "status": "COMPLETE",
+               "progress": 100,
+               "tables": [
+                    "grievances",
+                    "users",
+                    "departments",
+                    "ml_models"
+               ],
+               "timestamp": "2022-10-01T09:15:40Z",
+               "connections": [
+                    "POSTGRES_DB",
+                    "AI_SERVERS",
+                    "GOVERNMENT_APIS"
+               ],
+               "features": [
+                    "Multi-language support",
+                    "Sentiment analysis",
+                    "Automated routing",
+                    "Analytics dashboard",
+                    "Mobile responsive"
+               ]
+          }
+     ]
+}

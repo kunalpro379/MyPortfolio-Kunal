@@ -125,7 +125,7 @@ const Dashboard = () => {
   const tabs = [
     { id: 'main', path: '/', icon: faHome, label: 'Main' },
     { id: 'about', path: '/about', icon: faUser, label: 'About' },
-    { id: 'skills', path: '/skills', icon: faCog, label: 'Skills' },
+    { id: 'projects', path: '/skills', icon: faCog, label: 'Projects' },
     { id: 'resume', path: '/resume', icon: faFile, label: 'Resume' },
     { id: 'playground', path: '/playground', icon: faGamepad, label: 'Playground' },
     { id: 'blogs', path: '/blogs', icon: faNewspaper, label: 'Blogs' },
@@ -139,7 +139,7 @@ const Dashboard = () => {
         return <Main />;
       case 'about':
         return <CyberBiosAbout />;
-      case 'skills':
+      case 'projects':
         return <Skills />;
       case 'resume':
         return <Resume />;

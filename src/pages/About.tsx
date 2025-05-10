@@ -9,7 +9,7 @@ const CyberBiosAbout = () => {
   const [scanLinePosition, setScanLinePosition] = useState(0);
 
   const bioText = "I'm a backend-focused developer with strong expertise in Flutter, Node.js, system design, and AWS. My skills span across backend technologies, DevOps, and deployment, with a focus on building scalable, high-performance systems. I specialize in Node.js, Express.js, and MongoDB, delivering real-time and robust solutions. I have extensive experience with real - time communication systems using WebSockets and Socket.IO and have worked on projects like live chat systems and live-streaming platforms.I'm also proficient in machine learning and deep learning, leveraging these technologies for AI - powered solutions such as content recommendations and intelligent search features. In the realm of DevOps, I manage the deployment lifecycle using tools like Docker, Kubernetes, CI/CD pipelines, and AWS to ensure streamlined processes and scalable applications. I design systems that emphasize performance, scalability, and fault tolerance, always considering the long-term sustainability of the architecture.";
-  const bioText2 = "              I'm currently exploring the potential of generative AI to build innovative applications and push boundaries in real-time user experiences. From building cloud-native applications to deploying production-ready solutions on AWS, I'm dedicated to creating efficient, reliable, and high-impact technologies that solve real-world problems.";
+  const bioText2 = "I'm currently exploring the potential of generative AI to build innovative applications and push boundaries in real-time user experiences. From building cloud-native applications to deploying production-ready solutions on AWS, I'm dedicated to creating efficient, reliable, and high-impact technologies that solve real-world problems.";
 
   // Boot sequence animation
   useEffect(() => {
@@ -276,7 +276,7 @@ const CyberBiosAbout = () => {
                 />
                 <div className="absolute inset-0 rounded-full border-4 border-cyan-700 overflow-hidden">
                   <motion.img
-                    src="/picofme.png"
+                    src="/me.png"
                     alt="Profile"
                     className="w-full h-full object-cover"
                     animate={{

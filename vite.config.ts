@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
-import path from "path";
+import { resolve } from "path";
+import markdownPlugin from './src/vite-plugins/markdown';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -10,10 +11,33 @@ export default defineConfig({
   },
   plugins: [
     react(),
+    markdownPlugin()
   ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
+      "@": resolve(__dirname, "./src"),
+      buffer: 'buffer/',
     },
   },
+  assetsInclude: ['**/*.md'],
+  build: {
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+      },
+    },
+  },
+  define: {
+    'process.env': {},
+    'global': {},
+    'Buffer': ['buffer', 'Buffer']
+  },
+  optimizeDeps: {
+    esbuildOptions: {
+      define: {
+        global: 'globalThis'
+      }
+    },
+    include: ['buffer']
+  }
 });
