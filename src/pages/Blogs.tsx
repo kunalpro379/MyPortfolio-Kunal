@@ -55,7 +55,7 @@ const fallbackMetadata: Record<string, FallbackMetadata> = {
     category: "Security",
     tags: ["VPN", "Networking", "Security", "OpenSSL", "TUN"],
     readTime: "15 min read",
-    author: "Kunal",
+    author: "Kunal Patil",
     id: 1
   },
   monorepo: {
@@ -64,7 +64,7 @@ const fallbackMetadata: Record<string, FallbackMetadata> = {
     category: "DevOps",
     tags: ["Monorepo", "Turborepo", "JavaScript", "Build Tools", "CI/CD"],
     readTime: "12 min read",
-    author: "Kunal",
+    author: "Vinit Solanki",
     id: 2
   },
   react: {
@@ -73,7 +73,7 @@ const fallbackMetadata: Record<string, FallbackMetadata> = {
     category: "Frontend",
     tags: ["React", "JavaScript", "Web Development", "Patterns", "Architecture"],
     readTime: "10 min read",
-    author: "Kunal",
+    author: "Vinit Solanki",
     id: 3
   },
   cloudIde: {
@@ -82,6 +82,7 @@ const fallbackMetadata: Record<string, FallbackMetadata> = {
     category: "DevOps",
     tags: ["AWS", "Kubernetes", "Cloud", "IDE", "DevTools"],
     readTime: "15 min",
+    author: "Kunal Patil",
     id: 4
   },
   faceRecognition: {
@@ -90,6 +91,7 @@ const fallbackMetadata: Record<string, FallbackMetadata> = {
     category: "AI",
     tags: ["Machine Learning", "Computer Vision", "PCA", "SVM", "Face Recognition"],
     readTime: "10 min",
+    author: "Kunal Patil",
     id: 5
   },
   gan: {
@@ -98,6 +100,7 @@ const fallbackMetadata: Record<string, FallbackMetadata> = {
     category: "AI",
     tags: ["GAN", "Computer Vision", "Deep Learning", "Image Generation", "Sketch Conversion"],
     readTime: "12 min",
+    author: "Kunal Patil",
     id: 6
   },
 
@@ -575,6 +578,10 @@ const BlogCard = ({ blog, index, onSelect }) => {
               #{tag}
             </span>
           ))}
+        </div>
+
+        <div className="text-xs text-slate-400 mb-2">
+          Author: <span className="text-cyan-400">{blog.author}</span>
         </div>
 
         <motion.div

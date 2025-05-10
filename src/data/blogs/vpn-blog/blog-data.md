@@ -4,7 +4,7 @@ date: "2024-03-10"
 category: "Security"
 tags: ["VPN", "Networking", "Security", "OpenSSL", "TUN"]
 readTime: "15 min read"
-author: "Kunal"
+author: "Kunal Patil"
 excerpt: "A deep dive into implementing a custom VPN solution using TUN interfaces and OpenSSL for secure tunneling."
 icon: "Lock"
 id: 1

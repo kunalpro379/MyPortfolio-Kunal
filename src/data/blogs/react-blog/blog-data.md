@@ -4,10 +4,11 @@ date: "2024-03-08"
 category: "Frontend"
 tags: ["React", "JavaScript", "Web Development", "Patterns", "Architecture"]
 readTime: "10 min read"
-author: "Kunal"
 excerpt: "Explore advanced React patterns and techniques for building scalable and maintainable applications."
 icon: "React"
 id: 3
+author: vinit solanki
+
 ---
 
 # Advanced React Patterns: Building Scalable Applications

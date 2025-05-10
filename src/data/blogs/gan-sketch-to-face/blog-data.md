@@ -5,6 +5,8 @@ category: "AI"
 tags: ["GAN", "Computer Vision", "Deep Learning", "Image Generation", "Sketch Conversion"]
 readTime: "12 min"
 id: 6
+author: kunal patil
+
 ---
 
 # From Sketch to Reality: Transforming Hand-Drawn Faces into Photorealistic Portraits Using AI

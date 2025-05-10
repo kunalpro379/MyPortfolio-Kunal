@@ -71,7 +71,11 @@ const MarkdownComponents = {
     if (src && (!src.startsWith('/') && !src.startsWith('http'))) {
       // This function would be called with the current blog's category from the BlogReader component
       const blogFolder = blogCategory ? getBlogFolder(blogCategory) : "vpn-blog";
-      imgSrc = `/src/data/blogs/${blogFolder}/${src}`;
+      // Use a path that works in both development and production
+      imgSrc = `${window.location.origin}/src/data/blogs/${blogFolder}/${src}`;
+    } else if (src && src.startsWith('/src/')) {
+      // Fix paths that start with /src/ to work in production
+      imgSrc = `${window.location.origin}${src}`;
     }
     
     return (
@@ -459,10 +463,10 @@ const BlogReader = ({ blog, onBack, embedded, blogCategory }: BlogReaderProps) =
                {/* Main Content */}
                <div className="flex-1 px-1 sm:px-3">
                     <motion.button
+                         onClick={onBack}
                          className={`${isMobile ? 'top-2 left-2' : 'absolute -left-16 top-4'} p-2 rounded-full bg-slate-900/90 backdrop-blur-md border border-cyan-900/50 text-cyan-400 hover:text-cyan-300 hover:border-cyan-500/50 transition-all z-10`}
                          whileHover={{ x: -5, scale: 1.05 }}
                          whileTap={{ scale: 0.95 }}
-                         onClick={onBack}
                     >
                          <ChevronLeft />
                     </motion.button>

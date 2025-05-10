@@ -4,10 +4,11 @@ date: "2024-03-09"
 category: "DevOps"
 tags: ["Monorepo", "Turborepo", "JavaScript", "Build Tools", "CI/CD"]
 readTime: "12 min read"
-author: "Kunal"
 excerpt: "Learn how to set up and manage efficient JavaScript monorepos using Turborepo for optimal build performance."
 icon: "Repo"
 id: 2
+author: vinit solanki
+
 ---
 
 # A Concise Overview on Monorepos & Turborepo
