@@ -68,14 +68,15 @@ const MarkdownComponents = {
     // Handle relative paths by checking if the path starts with '/' or 'http'
     let imgSrc = src;
     
-    if (src && (!src.startsWith('/') && !src.startsWith('http'))) {
-      // This function would be called with the current blog's category from the BlogReader component
-      const blogFolder = blogCategory ? getBlogFolder(blogCategory) : "vpn-blog";
-      // Use a path that works in both development and production
-      imgSrc = `${window.location.origin}/src/data/blogs/${blogFolder}/${src}`;
-    } else if (src && src.startsWith('/src/')) {
-      // Fix paths that start with /src/ to work in production
-      imgSrc = `${window.location.origin}${src}`;
+    // For absolute paths in public directory (starts with /) or external URLs (starts with http)
+    if (src && (src.startsWith('/') || src.startsWith('http'))) {
+      // Just use as-is
+      imgSrc = src;
+    } else if (src) {
+      // For relative paths that refer to blog content, use public images instead
+      // This assumes you've copied these images to the public folder as a reliable solution
+      // for production builds
+      imgSrc = `/${src}`;
     }
     
     return (
