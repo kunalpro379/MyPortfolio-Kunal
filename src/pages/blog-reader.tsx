@@ -464,8 +464,8 @@ const BlogReader = ({ blog, onBack, embedded, blogCategory }: BlogReaderProps) =
                <div className="flex-1 px-1 sm:px-3">
                     <motion.button
                          onClick={onBack}
-                         className={`${isMobile ? 'top-2 left-2' : 'absolute -left-16 top-4'} p-2 rounded-full bg-slate-900/90 backdrop-blur-md border border-cyan-900/50 text-cyan-400 hover:text-cyan-300 hover:border-cyan-500/50 transition-all z-10`}
-                         whileHover={{ x: -5, scale: 1.05 }}
+                         className="p-2 rounded-full bg-slate-900/90 backdrop-blur-md border border-cyan-900/50 text-cyan-400 hover:text-cyan-300 hover:border-cyan-500/50 transition-all z-10 mb-4 block"
+                         whileHover={{ scale: 1.05 }}
                          whileTap={{ scale: 0.95 }}
                     >
                          <ChevronLeft />
