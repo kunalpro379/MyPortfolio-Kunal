@@ -68,15 +68,14 @@ const MarkdownComponents = {
     // Handle relative paths by checking if the path starts with '/' or 'http'
     let imgSrc = src;
     
-    // For absolute paths in public directory (starts with /) or external URLs (starts with http)
-    if (src && (src.startsWith('/') || src.startsWith('http'))) {
-      // Just use as-is
-      imgSrc = src;
-    } else if (src) {
-      // For relative paths that refer to blog content, use public images instead
-      // This assumes you've copied these images to the public folder as a reliable solution
-      // for production builds
+    if (src && (!src.startsWith('/') && !src.startsWith('http'))) {
+      // This is a relative path in the blog content
+      // Use the filename directly from the public folder
       imgSrc = `/${src}`;
+    } else if (src && src.startsWith('/src/')) {
+      // For paths that start with /src/, use just the filename in production
+      const filename = src.split('/').pop();
+      imgSrc = `/${filename}`;
     }
     
     return (

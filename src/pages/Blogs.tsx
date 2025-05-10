@@ -361,19 +361,19 @@ const blogData = [
   {
     ...vpnBlog.metadata,
     sections: vpnBlog.sections,
-    attachment: "/vpn_background.jpg", // Using path from public directory
+    attachment: "/vpn_background.jpg", // Use path from public directory
     icon: <Lock className="h-6 w-6 text-cyan-400" />
   },
   {
     ...monorepoBlog.metadata,
     sections: monorepoBlog.sections,
-    attachment: "/monorepo_attachment.webp", // Using path from public directory
+    attachment: "/attatchment_2.webp", // Use path from public directory
     icon: <GitBranch className="h-6 w-6 text-cyan-400" />
   },
   {
     ...reactBlog.metadata,
     sections: reactBlog.sections,
-    attachment: "/react_attachment.webp", // Using path from public directory
+    attachment: "/attatchment_1.webp", // Use path from public directory
     icon: <Code className="h-6 w-6 text-cyan-400" />
   },
   {
